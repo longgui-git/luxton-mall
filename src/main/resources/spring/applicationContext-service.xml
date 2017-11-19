@@ -18,8 +18,8 @@
 	<!-- sping 和 Service这一层相关的配置 这个扫描的作用是：sping容器为我们创建service实例 -->
 
 
-
-	<context:component-scan base-package="com.luxton.service"></context:component-scan>
+<context:component-scan base-package="com.luxton.service"></context:component-scan>
+	
 	
 
 
