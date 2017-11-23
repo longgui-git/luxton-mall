@@ -49,12 +49,13 @@ public class AdminLoginController {
 	
 	
 	
-	@RequestMapping("/")
+	@RequestMapping("/add/adminUser")
 	@ResponseBody
-	public LuxtonResult createAdmin(){
+	public LuxtonResult createAdmin(HttpServletRequest req,@RequestBody LuxAdmin admin){
 		
+		LuxtonResult result = adminService.createAdmin(req, admin.getUsername(), admin.getPassword());
 		
-		return null;
+		return result;
 	}
 	
 	
