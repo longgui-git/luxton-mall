@@ -22,9 +22,9 @@ public class UserController {
 	
 	@RequestMapping("/register")
 	@ResponseBody
-	public LuxtonResult createUser(@RequestBody LuxUser user){
+	public LuxtonResult createUser(@RequestBody LuxUser user,String registerCode){
 		
-		LuxtonResult result = userService.createUser(user);
+		LuxtonResult result = userService.createUser(user,registerCode);
 		
 		return result;
 	}

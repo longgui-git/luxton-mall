@@ -5,13 +5,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luxton.mapper.LuxAdminMapper;
+import com.luxton.mapper.LuxRegisterCodeMapper;
 import com.luxton.pojo.LuxAdmin;
 import com.luxton.pojo.LuxAdminExample;
 import com.luxton.pojo.LuxAdminExample.Criteria;
+import com.luxton.pojo.LuxRegisterCode;
 import com.luxton.service.AdminLoginService;
 import com.luxton.utils.LuxtonResult;
 import com.luxton.utils.MD5;
@@ -20,6 +23,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
 	@Autowired
 	private LuxAdminMapper adminMapper;
+	
+	@Autowired
+	private LuxRegisterCodeMapper codeMapper;
 	
 	@Override
 	public LuxtonResult getAdminLogin(HttpServletRequest req,String username, String password) {
@@ -80,6 +86,22 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 		}
 		
 		return LuxtonResult.ok();
+	}
+
+
+
+	@Override
+	public LuxtonResult createRegisterCode() {
+
+		LuxRegisterCode code = new LuxRegisterCode();
+		code.setCreateTime(new Date());
+		
+		String registerCode = RandomStringUtils.random(10, 0, 0, true, true, null);
+		code.setRegisterCode(registerCode);
+		
+		codeMapper.insert(code);
+		
+		return LuxtonResult.ok(registerCode);
 	}
 
 	

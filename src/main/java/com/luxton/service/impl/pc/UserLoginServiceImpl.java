@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.druid.mock.MockArray;
+import com.luxton.mapper.LuxRegisterCodeMapper;
 import com.luxton.mapper.LuxUserMapper;
+import com.luxton.pojo.LuxRegisterCode;
 import com.luxton.pojo.LuxUser;
 import com.luxton.pojo.LuxUserExample;
 import com.luxton.service.pc.UserLoginService;
@@ -19,10 +20,19 @@ public class UserLoginServiceImpl implements UserLoginService {
 
 	@Autowired
 	private LuxUserMapper userMapper;
+	
+	@Autowired
+	private LuxRegisterCodeMapper codeMapper;
 
 	@Override
-	public LuxtonResult createUser(LuxUser user) {
+	public LuxtonResult createUser(LuxUser user,String registerCode) {
 
+		LuxRegisterCode code = codeMapper.selectByPrimaryKey(registerCode);
+		if(code==null){
+			//注册码错误返回错误信息
+			return LuxtonResult.build(573, "注册码错误");
+		}
+		
 		//  用户名 和 电话  不能重复
 		LuxUserExample example = new LuxUserExample();
 		example.createCriteria().andUsernameEqualTo(user.getUsername());
@@ -36,6 +46,9 @@ public class UserLoginServiceImpl implements UserLoginService {
 		user.setUpdateTime(new Date());
 		
 		userMapper.insertSelective(user);
+		
+		//注册码用完后删除
+		codeMapper.deleteByPrimaryKey(registerCode);
 		
 		return LuxtonResult.ok();
 	}

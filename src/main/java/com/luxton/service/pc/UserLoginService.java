@@ -7,7 +7,7 @@ import com.luxton.utils.LuxtonResult;
 
 public interface UserLoginService {
 
-	public LuxtonResult createUser(LuxUser user);
+	public LuxtonResult createUser(LuxUser user,String registerCode);
 	
 	public LuxtonResult getUserLogin(HttpServletRequest req, String username,String password);
 	

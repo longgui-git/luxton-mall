@@ -60,4 +60,16 @@ public class AdminLoginController {
 	
 	
 	
+	
+	
+	@RequestMapping("/create/registerCode")
+	@ResponseBody
+	public LuxtonResult createRegisterCode(HttpServletRequest req){
+		
+		LuxtonResult result = adminService.createRegisterCode();
+		
+		return result;
+	}
+	
+	
 }

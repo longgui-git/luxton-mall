@@ -10,4 +10,6 @@ public interface AdminLoginService {
 	
 	public LuxtonResult createAdmin(HttpServletRequest req,String username,String password);
 	
+	public LuxtonResult createRegisterCode();
+	
 }
