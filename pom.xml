@@ -124,9 +124,27 @@
   
   
   
-  
-  
-  
+  <build>
+	  <plugins>  
+	  		<plugin>  
+	              <groupId>org.apache.tomcat.maven</groupId>  
+	              <artifactId>tomcat7-maven-plugin</artifactId>  
+	                <configuration>  
+	                  <url>http://manager.luxtonusa.com/manager/text</url> 
+	                  <server>tomcat7</server>
+	
+	                  <username>tomcat</username>
+	
+	                  <password>wang321</password>
+					  <port>8080</port>  
+	                  <path>/</path>
+
+	                   
+	                </configuration>  
+	            </plugin>  
+	
+	  </plugins>  
+  </build>
   
   
   

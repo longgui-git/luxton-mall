@@ -9,8 +9,8 @@ import com.luxton.service.SupplierService;
 import com.luxton.utils.LuxtonResult;
 
 @Controller
-@RequestMapping("/supplier")
-public class SupplierController {
+@RequestMapping("/pc/supplier")
+public class SupplierControllerPC {
 
 	@Autowired
 	private SupplierService supplierService;
