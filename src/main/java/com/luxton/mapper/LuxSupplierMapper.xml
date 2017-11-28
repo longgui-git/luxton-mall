@@ -90,9 +90,6 @@
   
   
   
-  
-  
-  
   <select id="getIndexSupplier" resultMap="BaseResultMap"  >
     select 
     supplier_id, name
