@@ -1,5 +1,6 @@
 package com.luxton.service.impl;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +35,18 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 		try {
 			
 			InputStream is = uploadFile.getInputStream();
+			
+			File filePath = new File("/home/ftpuser/images"+imagePath);
+			if (!filePath.exists()) {
+				filePath.mkdirs();
+				filePath.setReadable(true);
+				filePath.setExecutable(true);
+				
+			}
+			
+			File file = new File("/home/ftpuser/images"+newName);
+			file.setReadable(true);
+			file.setExecutable(true);
 			
 			FileOutputStream fos = new FileOutputStream("/home/ftpuser/images"+newName);
 			
