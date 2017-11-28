@@ -1,5 +1,7 @@
 package com.luxton.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,15 @@ public class PictureController {
 	public LuxtonResult uploadPicture(MultipartFile uploadFile){
 		
 		LuxtonResult result = picService.uploadPicture(uploadFile);
+		
+		return result;
+	}
+	
+	@RequestMapping("/picture/list/upload")
+	@ResponseBody
+	public LuxtonResult uploadPictureList(List<MultipartFile> fileList){
+		
+		LuxtonResult result = picService.uploadPictureList(fileList);
 		
 		return result;
 	}
