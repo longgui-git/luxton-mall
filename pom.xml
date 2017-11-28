@@ -131,8 +131,6 @@
 	              <artifactId>tomcat7-maven-plugin</artifactId>  
 	                <configuration>  
 	                  <url>http://manager.luxtonusa.com/manager/text</url> 
-	                  <server>tomcat7</server>
-	
 	                  <username>tomcat</username>
 	
 	                  <password>wang321</password>
