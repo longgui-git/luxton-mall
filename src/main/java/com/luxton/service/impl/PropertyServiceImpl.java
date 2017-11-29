@@ -63,4 +63,21 @@ public class PropertyServiceImpl implements PropertyService {
 		return LuxtonResult.ok(listResult);
 	}
 
+	@Override
+	public LuxtonResult deleteProperty(Integer propertyId) {
+
+		LuxPropertyValueExample example = new LuxPropertyValueExample();
+		example.createCriteria().andPropertyIdEqualTo(propertyId);
+		
+		valueMapper.deleteByExample(example);
+		
+		propertyMapper.deleteByPrimaryKey(propertyId);
+		
+		return LuxtonResult.ok();
+	}
+	
+	
+	
+	
+
 }

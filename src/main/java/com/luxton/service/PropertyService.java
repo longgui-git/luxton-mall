@@ -9,4 +9,6 @@ public interface PropertyService {
 	
 	public LuxtonResult getPropertyByCatId(Integer catId);
 	
+	public LuxtonResult deleteProperty(Integer propertyId);
+	
 }
