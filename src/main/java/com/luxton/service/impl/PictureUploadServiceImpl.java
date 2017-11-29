@@ -36,19 +36,17 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 			
 			InputStream is = uploadFile.getInputStream();
 			
-			File filePath = new File("/home/ftpuser/images"+imagePath);
+			File filePath = new File("/ftpuser/images"+imagePath);
 			if (!filePath.exists()) {
 				filePath.mkdirs();
 				filePath.setReadable(true);
-				filePath.setExecutable(true);
 				
 			}
 			
-			File file = new File("/home/ftpuser/images"+newName);
+			File file = new File("/ftpuser/images"+newName);
 			file.setReadable(true);
-			file.setExecutable(true);
 			
-			FileOutputStream fos = new FileOutputStream("/home/ftpuser/images"+newName);
+			FileOutputStream fos = new FileOutputStream("/ftpuser/images"+newName);
 			
 			int bytesRead = 0;
 			byte[] buffer = new byte[8192];
@@ -65,7 +63,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 		}
 		
 		
-		return LuxtonResult.ok("http://image.luxtonusa.com"+newName);
+		return LuxtonResult.ok("http://luximage.helpyoulove.com"+newName);
 	}
 
 	@Override
@@ -86,9 +84,19 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 			
 			try {
 				
+				File filePath = new File("/ftpuser/images"+imagePath);
+				if (!filePath.exists()) {
+					filePath.mkdirs();
+					filePath.setReadable(true);
+					
+				}
+				
+				File file = new File("/ftpuser/images"+newName);
+				file.setReadable(true);
+				
 				InputStream is = uploadFile.getInputStream();
 				
-				FileOutputStream fos = new FileOutputStream("/home/ftpuser/images"+newName);
+				FileOutputStream fos = new FileOutputStream("/ftpuser/images"+newName);
 				
 				int bytesRead = 0;
 				byte[] buffer = new byte[8192];
@@ -99,7 +107,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 				fos.close();
 				is.close();
 				
-				picList.add("http://image.luxtonusa.com"+newName);
+				picList.add("http://luximage.helpyoulove.com"+newName);
 				
 			} catch (IOException e) {
 				sb=sb.append(oldName+"  ");

@@ -159,14 +159,12 @@
 	              <groupId>org.apache.tomcat.maven</groupId>  
 	              <artifactId>tomcat7-maven-plugin</artifactId>  
 	                <configuration>  
-	                  <url>http://manager.luxtonusa.com/manager/text</url> 
+	                  <url>http://luxma.helpyoulove.com/manager/text</url> 
 	                  <username>tomcat</username>
-	
-	                  <password>wang321</password>
+	                  <password>222222</password>
 					  <port>8080</port>  
 	                  <path>/</path>
 
-	                   
 	                </configuration>  
 	            </plugin>  
 	
