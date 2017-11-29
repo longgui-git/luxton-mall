@@ -89,6 +89,49 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	}
 
 
+	
+	
+	
+
+	@Override
+	public LuxtonResult getAdminList(HttpServletRequest req) {
+		
+		String adminRole = (String) req.getSession().getAttribute("adminRole");
+		if(adminRole.equals("admin")){
+			
+			List<LuxAdmin> list = adminMapper.selectByExample(null);
+			
+			return LuxtonResult.ok(list);
+		}else{
+			return LuxtonResult.build(551, "权限不允许");
+		}
+		
+	}
+
+
+
+	@Override
+	public LuxtonResult deleteAdmin(HttpServletRequest req ,Integer adminId) {
+		
+		String adminRole = (String) req.getSession().getAttribute("adminRole");
+		
+		if(adminRole.equals("admin")){
+			
+			LuxAdmin admin = adminMapper.selectByPrimaryKey(adminId);
+			if(admin.getIdentity().equals("user")){
+				adminMapper.deleteByPrimaryKey(adminId);
+			}
+			
+		}else{
+			return LuxtonResult.build(551, "权限不允许");
+		}
+		
+		
+		
+		return LuxtonResult.ok();
+	}
+
+
 
 	@Override
 	public LuxtonResult createRegisterCode() {

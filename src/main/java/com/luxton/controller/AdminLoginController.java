@@ -4,8 +4,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,9 +60,23 @@ public class AdminLoginController {
 		return result;
 	}
 	
+	@RequestMapping("/get/list")
+	@ResponseBody
+	public LuxtonResult getAdminList(HttpServletRequest req){
+		
+		LuxtonResult result = adminService.createRegisterCode();
+		
+		return result;
+	}
 	
-	
-	
+	@RequestMapping("/delete/{adminId}")
+	@ResponseBody
+	public LuxtonResult deleteAdmin(HttpServletRequest req,@PathVariable Integer adminId){
+		
+		LuxtonResult result = adminService.deleteAdmin(req ,adminId);
+		
+		return result;
+	}
 	
 	@RequestMapping("/create/registerCode")
 	@ResponseBody
@@ -70,6 +86,8 @@ public class AdminLoginController {
 		
 		return result;
 	}
+	
+	
 	
 	
 }
