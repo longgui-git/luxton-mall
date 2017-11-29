@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.luxton.pojo.LuxPropertyValue" >
     <id column="property_value_id" property="propertyValueId" jdbcType="INTEGER" />
     <result column="value_title" property="valueTitle" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="property_id" property="propertyId" jdbcType="INTEGER" />
     <result column="cat_id" property="catId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    property_value_id, value_title, property_id, cat_id, create_time
+    property_value_id, value_title, remark, property_id, cat_id, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxPropertyValueExample" >
     select
@@ -100,10 +101,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxPropertyValue" >
-    insert into lux_property_value (property_value_id, value_title, property_id, 
-      cat_id, create_time)
-    values (#{propertyValueId,jdbcType=INTEGER}, #{valueTitle,jdbcType=VARCHAR}, #{propertyId,jdbcType=INTEGER}, 
-      #{catId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    insert into lux_property_value (property_value_id, value_title, remark, 
+      property_id, cat_id, create_time
+      )
+    values (#{propertyValueId,jdbcType=INTEGER}, #{valueTitle,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{propertyId,jdbcType=INTEGER}, #{catId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxPropertyValue" >
     insert into lux_property_value
@@ -113,6 +116,9 @@
       </if>
       <if test="valueTitle != null" >
         value_title,
+      </if>
+      <if test="remark != null" >
+        remark,
       </if>
       <if test="propertyId != null" >
         property_id,
@@ -130,6 +136,9 @@
       </if>
       <if test="valueTitle != null" >
         #{valueTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="propertyId != null" >
         #{propertyId,jdbcType=INTEGER},
@@ -157,6 +166,9 @@
       <if test="record.valueTitle != null" >
         value_title = #{record.valueTitle,jdbcType=VARCHAR},
       </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
       <if test="record.propertyId != null" >
         property_id = #{record.propertyId,jdbcType=INTEGER},
       </if>
@@ -175,6 +187,7 @@
     update lux_property_value
     set property_value_id = #{record.propertyValueId,jdbcType=INTEGER},
       value_title = #{record.valueTitle,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
       property_id = #{record.propertyId,jdbcType=INTEGER},
       cat_id = #{record.catId,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -187,6 +200,9 @@
     <set >
       <if test="valueTitle != null" >
         value_title = #{valueTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="propertyId != null" >
         property_id = #{propertyId,jdbcType=INTEGER},
@@ -203,6 +219,7 @@
   <update id="updateByPrimaryKey" parameterType="com.luxton.pojo.LuxPropertyValue" >
     update lux_property_value
     set value_title = #{valueTitle,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       property_id = #{propertyId,jdbcType=INTEGER},
       cat_id = #{catId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP}

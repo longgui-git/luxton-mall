@@ -7,6 +7,8 @@ public class LuxPropertyValue {
 
     private String valueTitle;
 
+    private String remark;
+
     private Integer propertyId;
 
     private Integer catId;
@@ -27,6 +29,14 @@ public class LuxPropertyValue {
 
     public void setValueTitle(String valueTitle) {
         this.valueTitle = valueTitle == null ? null : valueTitle.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
     public Integer getPropertyId() {

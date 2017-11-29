@@ -122,6 +122,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxItemProperty" >
+  
+ 
+  
     insert into lux_item_property (item_property_id, item_id, create_time, 
       property_data)
     values (#{itemPropertyId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 

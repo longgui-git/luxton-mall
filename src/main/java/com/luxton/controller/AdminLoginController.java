@@ -4,7 +4,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +24,9 @@ public class AdminLoginController {
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public void getAdminLogin(HttpServletRequest req,HttpServletResponse res ,@RequestBody LuxAdmin admin){
+	public LuxtonResult getAdminLogin(HttpServletRequest req,HttpServletResponse res ,@RequestBody LuxAdmin admin){
 		
+//		LuxtonResult result = adminService.getAdminLogin(req, admin.getUsername(), admin.getPassword());
 		LuxtonResult result = adminService.getAdminLogin(req, admin.getUsername(), admin.getPassword());
 		
 		try {
@@ -37,16 +37,17 @@ public class AdminLoginController {
 				cookie1.setMaxAge(7200);
 				res.addCookie(cookie1);
 				
-				res.sendRedirect("http://www.luxtonusa.com");
+//				res.sendRedirect("http://www.luxtonusa.com");
+				return LuxtonResult.ok();
 			}
 			
-			res.sendRedirect("http://www.luxtonusa.com/error");
+//			res.sendRedirect("http://www.luxtonusa.com/error");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
 		
-		
+		return LuxtonResult.build(572, "登录失败");
 	}
 	
 	
@@ -64,7 +65,7 @@ public class AdminLoginController {
 	@ResponseBody
 	public LuxtonResult getAdminList(HttpServletRequest req){
 		
-		LuxtonResult result = adminService.createRegisterCode();
+		LuxtonResult result = adminService.getAdminList(req);
 		
 		return result;
 	}

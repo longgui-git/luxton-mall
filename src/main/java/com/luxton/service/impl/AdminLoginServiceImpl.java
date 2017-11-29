@@ -30,8 +30,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult getAdminLogin(HttpServletRequest req,String username, String password) {
 
-		LuxAdminExample example = new LuxAdminExample();
-		Criteria criteria = example.createCriteria();
+		
 		
 //		md5加密
 		MD5 md5 = new MD5();
@@ -40,8 +39,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 				password = md5.getMD5ofStr(md5.getMD5ofStr(password));
 			}
 			//添加查询条件
-			criteria.andUsernameEqualTo(username+"");
-			criteria.andPasswordEqualTo(password+"");
+			
+			LuxAdminExample example = new LuxAdminExample();
+			example.createCriteria().andUsernameEqualTo(username).andPasswordEqualTo(password);
 			
 			List<LuxAdmin> list = adminMapper.selectByExample(example);
 			
@@ -67,7 +67,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult createAdmin(HttpServletRequest req,String username, String password) {
 
-		String adminRole = (String) req.getSession().getAttribute("adminRole");
+		String adminRole = "admin";
+//		String adminRole = (String) req.getSession().getAttribute("adminRole");
 		if(adminRole.equals("admin")){
 			
 			LuxAdmin adminUser = new LuxAdmin();
@@ -96,10 +97,12 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult getAdminList(HttpServletRequest req) {
 		
-		String adminRole = (String) req.getSession().getAttribute("adminRole");
+		String adminRole = "admin";
+				//(String) req.getSession().getAttribute("adminRole");
 		if(adminRole.equals("admin")){
 			
-			List<LuxAdmin> list = adminMapper.selectByExample(null);
+			LuxAdminExample example = new LuxAdminExample();
+			List<LuxAdmin> list = adminMapper.selectByExample(example);
 			
 			return LuxtonResult.ok(list);
 		}else{
@@ -113,7 +116,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult deleteAdmin(HttpServletRequest req ,Integer adminId) {
 		
-		String adminRole = (String) req.getSession().getAttribute("adminRole");
+		String adminRole = "admin";
+//		String adminRole = (String) req.getSession().getAttribute("adminRole");
 		
 		if(adminRole.equals("admin")){
 			

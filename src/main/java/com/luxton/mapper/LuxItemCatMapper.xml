@@ -101,6 +101,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxItemCat" >
+  
+  <selectKey resultType="int" keyProperty="catId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_item_cat (cat_id, parent_id, title, 
       sort_order, search_title, create_time
       )
@@ -109,6 +114,11 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxItemCat" >
+  
+  <selectKey resultType="int" keyProperty="catId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_item_cat
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="catId != null" >

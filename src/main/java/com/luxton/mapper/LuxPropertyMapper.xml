@@ -101,6 +101,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxProperty" >
+  
+  	<selectKey resultType="int" keyProperty="propertyId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_property (property_id, title, cat_id, 
       is_color, is_sale, create_time
       )
@@ -109,6 +114,11 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxProperty" >
+  
+   <selectKey resultType="int" keyProperty="propertyId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_property
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="propertyId != null" >
