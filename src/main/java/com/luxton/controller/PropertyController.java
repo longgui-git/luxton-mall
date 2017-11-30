@@ -28,7 +28,7 @@ public class PropertyController {
 	}
 	
 	
-	@RequestMapping("/get/info")
+	@RequestMapping("/get/info/{catId}")
 	@ResponseBody
 	public LuxtonResult getPropertyByCatId(@PathVariable Integer catId) {
 		
