@@ -415,6 +415,66 @@ public class LuxPropertyExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsSearchIsNull() {
+            addCriterion("is_search is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchIsNotNull() {
+            addCriterion("is_search is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchEqualTo(Boolean value) {
+            addCriterion("is_search =", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchNotEqualTo(Boolean value) {
+            addCriterion("is_search <>", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchGreaterThan(Boolean value) {
+            addCriterion("is_search >", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_search >=", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchLessThan(Boolean value) {
+            addCriterion("is_search <", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_search <=", value, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchIn(List<Boolean> values) {
+            addCriterion("is_search in", values, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchNotIn(List<Boolean> values) {
+            addCriterion("is_search not in", values, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_search between", value1, value2, "isSearch");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSearchNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_search not between", value1, value2, "isSearch");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

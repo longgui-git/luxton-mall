@@ -7,6 +7,7 @@
     <result column="cat_id" property="catId" jdbcType="INTEGER" />
     <result column="is_color" property="isColor" jdbcType="BIT" />
     <result column="is_sale" property="isSale" jdbcType="BIT" />
+    <result column="is_search" property="isSearch" jdbcType="BIT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    property_id, title, cat_id, is_color, is_sale, create_time
+    property_id, title, cat_id, is_color, is_sale, is_search, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxPropertyExample" >
     select
@@ -107,15 +108,15 @@
 	</selectKey>
   
     insert into lux_property (property_id, title, cat_id, 
-      is_color, is_sale, create_time
+      is_color, is_sale, is_search, create_time
       )
     values (#{propertyId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, 
-      #{isColor,jdbcType=BIT}, #{isSale,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
+      #{isColor,jdbcType=BIT}, #{isSale,jdbcType=BIT}, #{isSearch,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxProperty" >
   
-   <selectKey resultType="int" keyProperty="propertyId" order="AFTER">
+  	<selectKey resultType="int" keyProperty="propertyId" order="AFTER">
 			select last_insert_id()
 	</selectKey>
   
@@ -136,6 +137,9 @@
       <if test="isSale != null" >
         is_sale,
       </if>
+      <if test="isSearch != null" >
+        is_search,
+      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -155,6 +159,9 @@
       </if>
       <if test="isSale != null" >
         #{isSale,jdbcType=BIT},
+      </if>
+      <if test="isSearch != null" >
+        #{isSearch,jdbcType=BIT},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -185,6 +192,9 @@
       <if test="record.isSale != null" >
         is_sale = #{record.isSale,jdbcType=BIT},
       </if>
+      <if test="record.isSearch != null" >
+        is_search = #{record.isSearch,jdbcType=BIT},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -200,6 +210,7 @@
       cat_id = #{record.catId,jdbcType=INTEGER},
       is_color = #{record.isColor,jdbcType=BIT},
       is_sale = #{record.isSale,jdbcType=BIT},
+      is_search = #{record.isSearch,jdbcType=BIT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -220,6 +231,9 @@
       <if test="isSale != null" >
         is_sale = #{isSale,jdbcType=BIT},
       </if>
+      <if test="isSearch != null" >
+        is_search = #{isSearch,jdbcType=BIT},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -232,6 +246,7 @@
       cat_id = #{catId,jdbcType=INTEGER},
       is_color = #{isColor,jdbcType=BIT},
       is_sale = #{isSale,jdbcType=BIT},
+      is_search = #{isSearch,jdbcType=BIT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where property_id = #{propertyId,jdbcType=INTEGER}
   </update>
