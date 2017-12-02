@@ -115,52 +115,52 @@ public class LuxItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andItemIdEqualTo(Long value) {
+        public Criteria andItemIdEqualTo(Integer value) {
             addCriterion("item_id =", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotEqualTo(Long value) {
+        public Criteria andItemIdNotEqualTo(Integer value) {
             addCriterion("item_id <>", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdGreaterThan(Long value) {
+        public Criteria andItemIdGreaterThan(Integer value) {
             addCriterion("item_id >", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andItemIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("item_id >=", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdLessThan(Long value) {
+        public Criteria andItemIdLessThan(Integer value) {
             addCriterion("item_id <", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdLessThanOrEqualTo(Long value) {
+        public Criteria andItemIdLessThanOrEqualTo(Integer value) {
             addCriterion("item_id <=", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdIn(List<Long> values) {
+        public Criteria andItemIdIn(List<Integer> values) {
             addCriterion("item_id in", values, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotIn(List<Long> values) {
+        public Criteria andItemIdNotIn(List<Integer> values) {
             addCriterion("item_id not in", values, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdBetween(Long value1, Long value2) {
+        public Criteria andItemIdBetween(Integer value1, Integer value2) {
             addCriterion("item_id between", value1, value2, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotBetween(Long value1, Long value2) {
+        public Criteria andItemIdNotBetween(Integer value1, Integer value2) {
             addCriterion("item_id not between", value1, value2, "itemId");
             return (Criteria) this;
         }
@@ -482,76 +482,6 @@ public class LuxItemExample {
 
         public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueIsNull() {
-            addCriterion("search_value is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueIsNotNull() {
-            addCriterion("search_value is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueEqualTo(String value) {
-            addCriterion("search_value =", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueNotEqualTo(String value) {
-            addCriterion("search_value <>", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueGreaterThan(String value) {
-            addCriterion("search_value >", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueGreaterThanOrEqualTo(String value) {
-            addCriterion("search_value >=", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueLessThan(String value) {
-            addCriterion("search_value <", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueLessThanOrEqualTo(String value) {
-            addCriterion("search_value <=", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueLike(String value) {
-            addCriterion("search_value like", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueNotLike(String value) {
-            addCriterion("search_value not like", value, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueIn(List<String> values) {
-            addCriterion("search_value in", values, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueNotIn(List<String> values) {
-            addCriterion("search_value not in", values, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueBetween(String value1, String value2) {
-            addCriterion("search_value between", value1, value2, "searchValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchValueNotBetween(String value1, String value2) {
-            addCriterion("search_value not between", value1, value2, "searchValue");
             return (Criteria) this;
         }
 

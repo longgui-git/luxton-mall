@@ -3,11 +3,11 @@ package com.luxton.pojo;
 import java.math.BigDecimal;
 
 public class LuxOrderItem {
-    private Long orderItemId;
+    private Integer orderItemId;
 
     private String orderId;
 
-    private Long itemId;
+    private Integer itemId;
 
     private Integer num;
 
@@ -17,11 +17,11 @@ public class LuxOrderItem {
 
     private String itemTitle;
 
-    public Long getOrderItemId() {
+    public Integer getOrderItemId() {
         return orderItemId;
     }
 
-    public void setOrderItemId(Long orderItemId) {
+    public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
     }
 
@@ -33,11 +33,11 @@ public class LuxOrderItem {
         this.orderId = orderId == null ? null : orderId.trim();
     }
 
-    public Long getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 

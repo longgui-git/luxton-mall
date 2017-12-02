@@ -10,7 +10,7 @@ public interface LuxItemMapper {
 
     int deleteByExample(LuxItemExample example);
 
-    int deleteByPrimaryKey(Long itemId);
+    int deleteByPrimaryKey(Integer itemId);
 
     int insert(LuxItem record);
 
@@ -18,7 +18,7 @@ public interface LuxItemMapper {
 
     List<LuxItem> selectByExample(LuxItemExample example);
 
-    LuxItem selectByPrimaryKey(Long itemId);
+    LuxItem selectByPrimaryKey(Integer itemId);
 
     int updateByExampleSelective(@Param("record") LuxItem record, @Param("example") LuxItemExample example);
 

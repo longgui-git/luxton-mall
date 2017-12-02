@@ -1,45 +1,63 @@
 package com.luxton.pojo;
 
-import java.util.Date;
-
 public class LuxItemProperty {
-    private Long itemPropertyId;
+    private Integer ipropertyId;
 
-    private Long itemId;
+    private Integer itemId;
 
-    private Date createTime;
+    private Integer propertyId;
 
-    private String propertyData;
+    private Integer propertyValueId;
 
-    public Long getItemPropertyId() {
-        return itemPropertyId;
+    private Integer skuId;
+
+    private Boolean isSku;
+
+    public Integer getIpropertyId() {
+        return ipropertyId;
     }
 
-    public void setItemPropertyId(Long itemPropertyId) {
-        this.itemPropertyId = itemPropertyId;
+    public void setIpropertyId(Integer ipropertyId) {
+        this.ipropertyId = ipropertyId;
     }
 
-    public Long getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Integer getPropertyId() {
+        return propertyId;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
     }
 
-    public String getPropertyData() {
-        return propertyData;
+    public Integer getPropertyValueId() {
+        return propertyValueId;
     }
 
-    public void setPropertyData(String propertyData) {
-        this.propertyData = propertyData == null ? null : propertyData.trim();
+    public void setPropertyValueId(Integer propertyValueId) {
+        this.propertyValueId = propertyValueId;
+    }
+
+    public Integer getSkuId() {
+        return skuId;
+    }
+
+    public void setSkuId(Integer skuId) {
+        this.skuId = skuId;
+    }
+
+    public Boolean getIsSku() {
+        return isSku;
+    }
+
+    public void setIsSku(Boolean isSku) {
+        this.isSku = isSku;
     }
 }

@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.luxton.mapper.LuxItemMapper" >
   <resultMap id="BaseResultMap" type="com.luxton.pojo.LuxItem" >
-    <id column="item_id" property="itemId" jdbcType="BIGINT" />
+    <id column="item_id" property="itemId" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="sell_point" property="sellPoint" jdbcType="VARCHAR" />
     <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
     <result column="cat_id" property="catId" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="search_value" property="searchValue" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
     <result column="pic_detailed" property="picDetailed" jdbcType="VARCHAR" />
@@ -72,8 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    item_id, title, sell_point, supplier_id, cat_id, price, search_value, status, pic_url, 
-    pic_detailed
+    item_id, title, sell_point, supplier_id, cat_id, price, status, pic_url, pic_detailed
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxItemExample" >
     select
@@ -89,15 +87,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from lux_item
-    where item_id = #{itemId,jdbcType=BIGINT}
+    where item_id = #{itemId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from lux_item
-    where item_id = #{itemId,jdbcType=BIGINT}
+    where item_id = #{itemId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.luxton.pojo.LuxItemExample" >
     delete from lux_item
@@ -106,16 +104,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxItem" >
+  
+  <selectKey resultType="int" keyProperty="itemId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_item (item_id, title, sell_point, 
       supplier_id, cat_id, price, 
-      search_value, status, pic_url, 
-      pic_detailed)
-    values (#{itemId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
+      status, pic_url, pic_detailed
+      )
+    values (#{itemId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
       #{supplierId,jdbcType=INTEGER}, #{catId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
-      #{searchValue,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{picUrl,jdbcType=VARCHAR}, 
-      #{picDetailed,jdbcType=VARCHAR})
+      #{status,jdbcType=BIT}, #{picUrl,jdbcType=VARCHAR}, #{picDetailed,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxItem" >
+  
+  <selectKey resultType="int" keyProperty="itemId" order="AFTER">
+			select last_insert_id()
+	</selectKey>
+  
     insert into lux_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="itemId != null" >
@@ -136,9 +144,6 @@
       <if test="price != null" >
         price,
       </if>
-      <if test="searchValue != null" >
-        search_value,
-      </if>
       <if test="status != null" >
         status,
       </if>
@@ -151,7 +156,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="itemId != null" >
-        #{itemId,jdbcType=BIGINT},
+        #{itemId,jdbcType=INTEGER},
       </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
@@ -167,9 +172,6 @@
       </if>
       <if test="price != null" >
         #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="searchValue != null" >
-        #{searchValue,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=BIT},
@@ -192,7 +194,7 @@
     update lux_item
     <set >
       <if test="record.itemId != null" >
-        item_id = #{record.itemId,jdbcType=BIGINT},
+        item_id = #{record.itemId,jdbcType=INTEGER},
       </if>
       <if test="record.title != null" >
         title = #{record.title,jdbcType=VARCHAR},
@@ -208,9 +210,6 @@
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=DECIMAL},
-      </if>
-      <if test="record.searchValue != null" >
-        search_value = #{record.searchValue,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=BIT},
@@ -228,13 +227,12 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update lux_item
-    set item_id = #{record.itemId,jdbcType=BIGINT},
+    set item_id = #{record.itemId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       sell_point = #{record.sellPoint,jdbcType=VARCHAR},
       supplier_id = #{record.supplierId,jdbcType=INTEGER},
       cat_id = #{record.catId,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DECIMAL},
-      search_value = #{record.searchValue,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=BIT},
       pic_url = #{record.picUrl,jdbcType=VARCHAR},
       pic_detailed = #{record.picDetailed,jdbcType=VARCHAR}
@@ -260,9 +258,6 @@
       <if test="price != null" >
         price = #{price,jdbcType=DECIMAL},
       </if>
-      <if test="searchValue != null" >
-        search_value = #{searchValue,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=BIT},
       </if>
@@ -273,7 +268,7 @@
         pic_detailed = #{picDetailed,jdbcType=VARCHAR},
       </if>
     </set>
-    where item_id = #{itemId,jdbcType=BIGINT}
+    where item_id = #{itemId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.luxton.pojo.LuxItem" >
     update lux_item
@@ -282,10 +277,9 @@
       supplier_id = #{supplierId,jdbcType=INTEGER},
       cat_id = #{catId,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
-      search_value = #{searchValue,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       pic_detailed = #{picDetailed,jdbcType=VARCHAR}
-    where item_id = #{itemId,jdbcType=BIGINT}
+    where item_id = #{itemId,jdbcType=INTEGER}
   </update>
 </mapper>

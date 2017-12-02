@@ -1,7 +1,6 @@
 package com.luxton.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class LuxItemPropertyExample {
@@ -105,63 +104,63 @@ public class LuxItemPropertyExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andItemPropertyIdIsNull() {
-            addCriterion("item_property_id is null");
+        public Criteria andIpropertyIdIsNull() {
+            addCriterion("iproperty_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdIsNotNull() {
-            addCriterion("item_property_id is not null");
+        public Criteria andIpropertyIdIsNotNull() {
+            addCriterion("iproperty_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdEqualTo(Long value) {
-            addCriterion("item_property_id =", value, "itemPropertyId");
+        public Criteria andIpropertyIdEqualTo(Integer value) {
+            addCriterion("iproperty_id =", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdNotEqualTo(Long value) {
-            addCriterion("item_property_id <>", value, "itemPropertyId");
+        public Criteria andIpropertyIdNotEqualTo(Integer value) {
+            addCriterion("iproperty_id <>", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdGreaterThan(Long value) {
-            addCriterion("item_property_id >", value, "itemPropertyId");
+        public Criteria andIpropertyIdGreaterThan(Integer value) {
+            addCriterion("iproperty_id >", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("item_property_id >=", value, "itemPropertyId");
+        public Criteria andIpropertyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("iproperty_id >=", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdLessThan(Long value) {
-            addCriterion("item_property_id <", value, "itemPropertyId");
+        public Criteria andIpropertyIdLessThan(Integer value) {
+            addCriterion("iproperty_id <", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdLessThanOrEqualTo(Long value) {
-            addCriterion("item_property_id <=", value, "itemPropertyId");
+        public Criteria andIpropertyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("iproperty_id <=", value, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdIn(List<Long> values) {
-            addCriterion("item_property_id in", values, "itemPropertyId");
+        public Criteria andIpropertyIdIn(List<Integer> values) {
+            addCriterion("iproperty_id in", values, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdNotIn(List<Long> values) {
-            addCriterion("item_property_id not in", values, "itemPropertyId");
+        public Criteria andIpropertyIdNotIn(List<Integer> values) {
+            addCriterion("iproperty_id not in", values, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdBetween(Long value1, Long value2) {
-            addCriterion("item_property_id between", value1, value2, "itemPropertyId");
+        public Criteria andIpropertyIdBetween(Integer value1, Integer value2) {
+            addCriterion("iproperty_id between", value1, value2, "ipropertyId");
             return (Criteria) this;
         }
 
-        public Criteria andItemPropertyIdNotBetween(Long value1, Long value2) {
-            addCriterion("item_property_id not between", value1, value2, "itemPropertyId");
+        public Criteria andIpropertyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("iproperty_id not between", value1, value2, "ipropertyId");
             return (Criteria) this;
         }
 
@@ -175,113 +174,293 @@ public class LuxItemPropertyExample {
             return (Criteria) this;
         }
 
-        public Criteria andItemIdEqualTo(Long value) {
+        public Criteria andItemIdEqualTo(Integer value) {
             addCriterion("item_id =", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotEqualTo(Long value) {
+        public Criteria andItemIdNotEqualTo(Integer value) {
             addCriterion("item_id <>", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdGreaterThan(Long value) {
+        public Criteria andItemIdGreaterThan(Integer value) {
             addCriterion("item_id >", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andItemIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("item_id >=", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdLessThan(Long value) {
+        public Criteria andItemIdLessThan(Integer value) {
             addCriterion("item_id <", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdLessThanOrEqualTo(Long value) {
+        public Criteria andItemIdLessThanOrEqualTo(Integer value) {
             addCriterion("item_id <=", value, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdIn(List<Long> values) {
+        public Criteria andItemIdIn(List<Integer> values) {
             addCriterion("item_id in", values, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotIn(List<Long> values) {
+        public Criteria andItemIdNotIn(List<Integer> values) {
             addCriterion("item_id not in", values, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdBetween(Long value1, Long value2) {
+        public Criteria andItemIdBetween(Integer value1, Integer value2) {
             addCriterion("item_id between", value1, value2, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andItemIdNotBetween(Long value1, Long value2) {
+        public Criteria andItemIdNotBetween(Integer value1, Integer value2) {
             addCriterion("item_id not between", value1, value2, "itemId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andPropertyIdIsNull() {
+            addCriterion("property_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andPropertyIdIsNotNull() {
+            addCriterion("property_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andPropertyIdEqualTo(Integer value) {
+            addCriterion("property_id =", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andPropertyIdNotEqualTo(Integer value) {
+            addCriterion("property_id <>", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andPropertyIdGreaterThan(Integer value) {
+            addCriterion("property_id >", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andPropertyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("property_id >=", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andPropertyIdLessThan(Integer value) {
+            addCriterion("property_id <", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andPropertyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("property_id <=", value, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andPropertyIdIn(List<Integer> values) {
+            addCriterion("property_id in", values, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
+        public Criteria andPropertyIdNotIn(List<Integer> values) {
+            addCriterion("property_id not in", values, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andPropertyIdBetween(Integer value1, Integer value2) {
+            addCriterion("property_id between", value1, value2, "propertyId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andPropertyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("property_id not between", value1, value2, "propertyId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdIsNull() {
+            addCriterion("property_value_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdIsNotNull() {
+            addCriterion("property_value_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdEqualTo(Integer value) {
+            addCriterion("property_value_id =", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdNotEqualTo(Integer value) {
+            addCriterion("property_value_id <>", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdGreaterThan(Integer value) {
+            addCriterion("property_value_id >", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("property_value_id >=", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdLessThan(Integer value) {
+            addCriterion("property_value_id <", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdLessThanOrEqualTo(Integer value) {
+            addCriterion("property_value_id <=", value, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdIn(List<Integer> values) {
+            addCriterion("property_value_id in", values, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdNotIn(List<Integer> values) {
+            addCriterion("property_value_id not in", values, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdBetween(Integer value1, Integer value2) {
+            addCriterion("property_value_id between", value1, value2, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPropertyValueIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("property_value_id not between", value1, value2, "propertyValueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdIsNull() {
+            addCriterion("sku_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdIsNotNull() {
+            addCriterion("sku_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdEqualTo(Integer value) {
+            addCriterion("sku_id =", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdNotEqualTo(Integer value) {
+            addCriterion("sku_id <>", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdGreaterThan(Integer value) {
+            addCriterion("sku_id >", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sku_id >=", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdLessThan(Integer value) {
+            addCriterion("sku_id <", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sku_id <=", value, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdIn(List<Integer> values) {
+            addCriterion("sku_id in", values, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdNotIn(List<Integer> values) {
+            addCriterion("sku_id not in", values, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdBetween(Integer value1, Integer value2) {
+            addCriterion("sku_id between", value1, value2, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkuIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sku_id not between", value1, value2, "skuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuIsNull() {
+            addCriterion("is_sku is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuIsNotNull() {
+            addCriterion("is_sku is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuEqualTo(Boolean value) {
+            addCriterion("is_sku =", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuNotEqualTo(Boolean value) {
+            addCriterion("is_sku <>", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuGreaterThan(Boolean value) {
+            addCriterion("is_sku >", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_sku >=", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuLessThan(Boolean value) {
+            addCriterion("is_sku <", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_sku <=", value, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuIn(List<Boolean> values) {
+            addCriterion("is_sku in", values, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuNotIn(List<Boolean> values) {
+            addCriterion("is_sku not in", values, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_sku between", value1, value2, "isSku");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSkuNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_sku not between", value1, value2, "isSku");
             return (Criteria) this;
         }
     }

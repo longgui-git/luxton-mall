@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.luxton.mapper.LuxItemPropertyMapper" >
   <resultMap id="BaseResultMap" type="com.luxton.pojo.LuxItemProperty" >
-    <id column="item_property_id" property="itemPropertyId" jdbcType="BIGINT" />
-    <result column="item_id" property="itemId" jdbcType="BIGINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.luxton.pojo.LuxItemProperty" extends="BaseResultMap" >
-    <result column="property_data" property="propertyData" jdbcType="LONGVARCHAR" />
+    <id column="iproperty_id" property="ipropertyId" jdbcType="INTEGER" />
+    <result column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="property_id" property="propertyId" jdbcType="INTEGER" />
+    <result column="property_value_id" property="propertyValueId" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="is_sku" property="isSku" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,27 +68,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    item_property_id, item_id, create_time
+    iproperty_id, item_id, property_id, property_value_id, sku_id, is_sku
   </sql>
-  <sql id="Blob_Column_List" >
-    property_data
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.luxton.pojo.LuxItemPropertyExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from lux_item_property
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxItemPropertyExample" >
     select
     <if test="distinct" >
@@ -103,17 +84,44 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+  
+  
+  
+  
+  <select id="getItemPropertyValue" resultType="com.luxton.pojo.LuxPropertyValue" parameterType="java.lang.Integer" >
+    SELECT lip.property_value_id propertyValueId ,lpv.value_title valueTitle
+	FROM lux_item_property lip
+	
+	LEFT JOIN lux_property_value lpv
+	ON lip.property_value_id = lpv.property_value_id 
+	
+	WHERE lip.property_id = #{propertyId,jdbcType=INTEGER}
+
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from lux_item_property
-    where item_property_id = #{itemPropertyId,jdbcType=BIGINT}
+    where iproperty_id = #{ipropertyId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from lux_item_property
-    where item_property_id = #{itemPropertyId,jdbcType=BIGINT}
+    where iproperty_id = #{ipropertyId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.luxton.pojo.LuxItemPropertyExample" >
     delete from lux_item_property
@@ -122,42 +130,53 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxItemProperty" >
-  
- 
-  
-    insert into lux_item_property (item_property_id, item_id, create_time, 
-      property_data)
-    values (#{itemPropertyId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{propertyData,jdbcType=LONGVARCHAR})
+    insert into lux_item_property (iproperty_id, item_id, property_id, 
+      property_value_id, sku_id, is_sku
+      )
+    values (#{ipropertyId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{propertyId,jdbcType=INTEGER}, 
+      #{propertyValueId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{isSku,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxItemProperty" >
     insert into lux_item_property
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="itemPropertyId != null" >
-        item_property_id,
+      <if test="ipropertyId != null" >
+        iproperty_id,
       </if>
       <if test="itemId != null" >
         item_id,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="propertyId != null" >
+        property_id,
       </if>
-      <if test="propertyData != null" >
-        property_data,
+      <if test="propertyValueId != null" >
+        property_value_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="isSku != null" >
+        is_sku,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="itemPropertyId != null" >
-        #{itemPropertyId,jdbcType=BIGINT},
+      <if test="ipropertyId != null" >
+        #{ipropertyId,jdbcType=INTEGER},
       </if>
       <if test="itemId != null" >
-        #{itemId,jdbcType=BIGINT},
+        #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="propertyId != null" >
+        #{propertyId,jdbcType=INTEGER},
       </if>
-      <if test="propertyData != null" >
-        #{propertyData,jdbcType=LONGVARCHAR},
+      <if test="propertyValueId != null" >
+        #{propertyValueId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="isSku != null" >
+        #{isSku,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -170,38 +189,37 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update lux_item_property
     <set >
-      <if test="record.itemPropertyId != null" >
-        item_property_id = #{record.itemPropertyId,jdbcType=BIGINT},
+      <if test="record.ipropertyId != null" >
+        iproperty_id = #{record.ipropertyId,jdbcType=INTEGER},
       </if>
       <if test="record.itemId != null" >
-        item_id = #{record.itemId,jdbcType=BIGINT},
+        item_id = #{record.itemId,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.propertyId != null" >
+        property_id = #{record.propertyId,jdbcType=INTEGER},
       </if>
-      <if test="record.propertyData != null" >
-        property_data = #{record.propertyData,jdbcType=LONGVARCHAR},
+      <if test="record.propertyValueId != null" >
+        property_value_id = #{record.propertyValueId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSku != null" >
+        is_sku = #{record.isSku,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update lux_item_property
-    set item_property_id = #{record.itemPropertyId,jdbcType=BIGINT},
-      item_id = #{record.itemId,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      property_data = #{record.propertyData,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByExample" parameterType="map" >
     update lux_item_property
-    set item_property_id = #{record.itemPropertyId,jdbcType=BIGINT},
-      item_id = #{record.itemId,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    set iproperty_id = #{record.ipropertyId,jdbcType=INTEGER},
+      item_id = #{record.itemId,jdbcType=INTEGER},
+      property_id = #{record.propertyId,jdbcType=INTEGER},
+      property_value_id = #{record.propertyValueId,jdbcType=INTEGER},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      is_sku = #{record.isSku,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,28 +228,30 @@
     update lux_item_property
     <set >
       <if test="itemId != null" >
-        item_id = #{itemId,jdbcType=BIGINT},
+        item_id = #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="propertyId != null" >
+        property_id = #{propertyId,jdbcType=INTEGER},
       </if>
-      <if test="propertyData != null" >
-        property_data = #{propertyData,jdbcType=LONGVARCHAR},
+      <if test="propertyValueId != null" >
+        property_value_id = #{propertyValueId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="isSku != null" >
+        is_sku = #{isSku,jdbcType=BIT},
       </if>
     </set>
-    where item_property_id = #{itemPropertyId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.luxton.pojo.LuxItemProperty" >
-    update lux_item_property
-    set item_id = #{itemId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      property_data = #{propertyData,jdbcType=LONGVARCHAR}
-    where item_property_id = #{itemPropertyId,jdbcType=BIGINT}
+    where iproperty_id = #{ipropertyId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.luxton.pojo.LuxItemProperty" >
     update lux_item_property
-    set item_id = #{itemId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where item_property_id = #{itemPropertyId,jdbcType=BIGINT}
+    set item_id = #{itemId,jdbcType=INTEGER},
+      property_id = #{propertyId,jdbcType=INTEGER},
+      property_value_id = #{propertyValueId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      is_sku = #{isSku,jdbcType=BIT}
+    where iproperty_id = #{ipropertyId,jdbcType=INTEGER}
   </update>
 </mapper>

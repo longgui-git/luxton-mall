@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.luxton.mapper.LuxOrderItemMapper" >
-  <resultMap id="BaseResultMap" type="com.luxton.pojo.LuxOrderItem" >
-    <id column="order_item_id" property="orderItemId" jdbcType="INTEGER" />
-    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+<mapper namespace="com.luxton.mapper.LuxItemSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.luxton.pojo.LuxItemSku" >
+    <id column="sku_id" property="skuId" jdbcType="INTEGER" />
     <result column="item_id" property="itemId" jdbcType="INTEGER" />
-    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="properties" property="properties" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="price_total" property="priceTotal" jdbcType="DECIMAL" />
-    <result column="item_title" property="itemTitle" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_item_id, order_id, item_id, num, price, price_total, item_title
+    sku_id, item_id, properties, price, quantity, title
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxOrderItemExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxItemSkuExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from lux_order_item
+    from lux_item_sku
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,105 +87,96 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from lux_order_item
-    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+    from lux_item_sku
+    where sku_id = #{skuId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from lux_order_item
-    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+    delete from lux_item_sku
+    where sku_id = #{skuId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.luxton.pojo.LuxOrderItemExample" >
-    delete from lux_order_item
+  <delete id="deleteByExample" parameterType="com.luxton.pojo.LuxItemSkuExample" >
+    delete from lux_item_sku
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.luxton.pojo.LuxOrderItem" >
-    insert into lux_order_item (order_item_id, order_id, item_id, 
-      num, price, price_total, 
-      item_title)
-    values (#{orderItemId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}, 
-      #{num,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{priceTotal,jdbcType=DECIMAL}, 
-      #{itemTitle,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.luxton.pojo.LuxItemSku" >
+    insert into lux_item_sku (sku_id, item_id, properties, 
+      price, quantity, title
+      )
+    values (#{skuId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{properties,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.luxton.pojo.LuxOrderItem" >
-    insert into lux_order_item
+  <insert id="insertSelective" parameterType="com.luxton.pojo.LuxItemSku" >
+    insert into lux_item_sku
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderItemId != null" >
-        order_item_id,
-      </if>
-      <if test="orderId != null" >
-        order_id,
+      <if test="skuId != null" >
+        sku_id,
       </if>
       <if test="itemId != null" >
         item_id,
       </if>
-      <if test="num != null" >
-        num,
+      <if test="properties != null" >
+        properties,
       </if>
       <if test="price != null" >
         price,
       </if>
-      <if test="priceTotal != null" >
-        price_total,
+      <if test="quantity != null" >
+        quantity,
       </if>
-      <if test="itemTitle != null" >
-        item_title,
+      <if test="title != null" >
+        title,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderItemId != null" >
-        #{orderItemId,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
       </if>
       <if test="itemId != null" >
         #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="num != null" >
-        #{num,jdbcType=INTEGER},
+      <if test="properties != null" >
+        #{properties,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
         #{price,jdbcType=DECIMAL},
       </if>
-      <if test="priceTotal != null" >
-        #{priceTotal,jdbcType=DECIMAL},
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="itemTitle != null" >
-        #{itemTitle,jdbcType=VARCHAR},
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.luxton.pojo.LuxOrderItemExample" resultType="java.lang.Integer" >
-    select count(*) from lux_order_item
+  <select id="countByExample" parameterType="com.luxton.pojo.LuxItemSkuExample" resultType="java.lang.Integer" >
+    select count(*) from lux_item_sku
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update lux_order_item
+    update lux_item_sku
     <set >
-      <if test="record.orderItemId != null" >
-        order_item_id = #{record.orderItemId,jdbcType=INTEGER},
-      </if>
-      <if test="record.orderId != null" >
-        order_id = #{record.orderId,jdbcType=VARCHAR},
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=INTEGER},
       </if>
       <if test="record.itemId != null" >
         item_id = #{record.itemId,jdbcType=INTEGER},
       </if>
-      <if test="record.num != null" >
-        num = #{record.num,jdbcType=INTEGER},
+      <if test="record.properties != null" >
+        properties = #{record.properties,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=DECIMAL},
       </if>
-      <if test="record.priceTotal != null" >
-        price_total = #{record.priceTotal,jdbcType=DECIMAL},
+      <if test="record.quantity != null" >
+        quantity = #{record.quantity,jdbcType=INTEGER},
       </if>
-      <if test="record.itemTitle != null" >
-        item_title = #{record.itemTitle,jdbcType=VARCHAR},
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -194,50 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update lux_order_item
-    set order_item_id = #{record.orderItemId,jdbcType=INTEGER},
-      order_id = #{record.orderId,jdbcType=VARCHAR},
+    update lux_item_sku
+    set sku_id = #{record.skuId,jdbcType=INTEGER},
       item_id = #{record.itemId,jdbcType=INTEGER},
-      num = #{record.num,jdbcType=INTEGER},
+      properties = #{record.properties,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
-      price_total = #{record.priceTotal,jdbcType=DECIMAL},
-      item_title = #{record.itemTitle,jdbcType=VARCHAR}
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.luxton.pojo.LuxOrderItem" >
-    update lux_order_item
+  <update id="updateByPrimaryKeySelective" parameterType="com.luxton.pojo.LuxItemSku" >
+    update lux_item_sku
     <set >
-      <if test="orderId != null" >
-        order_id = #{orderId,jdbcType=VARCHAR},
-      </if>
       <if test="itemId != null" >
         item_id = #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="num != null" >
-        num = #{num,jdbcType=INTEGER},
+      <if test="properties != null" >
+        properties = #{properties,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=DECIMAL},
       </if>
-      <if test="priceTotal != null" >
-        price_total = #{priceTotal,jdbcType=DECIMAL},
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
       </if>
-      <if test="itemTitle != null" >
-        item_title = #{itemTitle,jdbcType=VARCHAR},
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
       </if>
     </set>
-    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+    where sku_id = #{skuId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.luxton.pojo.LuxOrderItem" >
-    update lux_order_item
-    set order_id = #{orderId,jdbcType=VARCHAR},
-      item_id = #{itemId,jdbcType=INTEGER},
-      num = #{num,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.luxton.pojo.LuxItemSku" >
+    update lux_item_sku
+    set item_id = #{itemId,jdbcType=INTEGER},
+      properties = #{properties,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
-      price_total = #{priceTotal,jdbcType=DECIMAL},
-      item_title = #{itemTitle,jdbcType=VARCHAR}
-    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+      quantity = #{quantity,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR}
+    where sku_id = #{skuId,jdbcType=INTEGER}
   </update>
 </mapper>

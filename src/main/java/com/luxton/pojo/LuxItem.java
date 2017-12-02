@@ -3,7 +3,7 @@ package com.luxton.pojo;
 import java.math.BigDecimal;
 
 public class LuxItem {
-    private Long itemId;
+    private Integer itemId;
 
     private String title;
 
@@ -15,19 +15,17 @@ public class LuxItem {
 
     private BigDecimal price;
 
-    private String searchValue;
-
     private Boolean status;
 
     private String picUrl;
 
     private String picDetailed;
 
-    public Long getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
@@ -69,14 +67,6 @@ public class LuxItem {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public String getSearchValue() {
-        return searchValue;
-    }
-
-    public void setSearchValue(String searchValue) {
-        this.searchValue = searchValue == null ? null : searchValue.trim();
     }
 
     public Boolean getStatus() {
