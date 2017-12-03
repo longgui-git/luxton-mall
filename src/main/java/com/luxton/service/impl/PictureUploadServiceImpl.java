@@ -69,6 +69,8 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 	@Override
 	public LuxtonResult uploadPictureList(List<MultipartFile> fileList) {
 		
+		System.out.println("-----"+fileList.size());
+		
 		List<String> picList = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		
@@ -84,6 +86,8 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 			
 			try {
 				
+				InputStream is = uploadFile.getInputStream();
+				
 				File filePath = new File("/ftpuser/images"+imagePath);
 				if (!filePath.exists()) {
 					filePath.mkdirs();
@@ -94,8 +98,6 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 				File file = new File("/ftpuser/images"+newName);
 				file.setReadable(true);
 				
-				InputStream is = uploadFile.getInputStream();
-				
 				FileOutputStream fos = new FileOutputStream("/ftpuser/images"+newName);
 				
 				int bytesRead = 0;
@@ -104,6 +106,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 				   fos.write(buffer, 0, bytesRead);
 				}
 				
+				fos.flush();
 				fos.close();
 				is.close();
 				

@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.luxton.pojo.LuxItem;
+import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;
 import com.luxton.service.ItemService;
+import com.luxton.utils.ExceptionUtil;
 import com.luxton.utils.LuxtonResult;
 
 @Controller
@@ -22,9 +26,26 @@ public class ItemController {
 	
 	@RequestMapping("/insert")
 	@ResponseBody
-	public LuxtonResult insertItem(LuxItem item) {
+	public LuxtonResult insertItem(@RequestBody ItemWithPicList item) {
 		
-		LuxtonResult result = itemService.insertItem(item);
+		LuxtonResult result = null;
+		try {
+			item.setPicDetailed(JSON.toJSONString(item.getPicList()));
+			result = itemService.insertItem(item);
+		} catch (Exception e) {
+			System.out.println(ExceptionUtil.getStackTrace(e));
+		}
+		
+		
+		return result;
+	}
+	
+	
+	@RequestMapping("/get/list")
+	@ResponseBody
+	public LuxtonResult getItemList() {
+		
+		LuxtonResult result = itemService.getItemList();
 		
 		return result;
 	}
@@ -40,9 +61,10 @@ public class ItemController {
 	}
 	
 	
+	
 	@RequestMapping("/insert/property/{itemId}")
 	@ResponseBody
-	public LuxtonResult insertItemProperty(List<PropertyWithValue> list, @PathVariable Integer itemId) {
+	public LuxtonResult insertItemProperty(@RequestBody List<PropertyWithValue> list, @PathVariable Integer itemId) {
 		
 		LuxtonResult result = itemService.insertItemProperty(list, itemId);
 		

@@ -12,6 +12,8 @@ public interface ItemService {
 	
 	public LuxtonResult getItem(Integer itemId);
 	
+	public LuxtonResult getItemList();
+	
 	
 	public LuxtonResult insertItemProperty(List<PropertyWithValue> list ,Integer itemId);
 	

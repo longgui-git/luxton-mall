@@ -92,4 +92,15 @@ public class LuxItem {
     public void setPicDetailed(String picDetailed) {
         this.picDetailed = picDetailed == null ? null : picDetailed.trim();
     }
+
+	@Override
+	public String toString() {
+		return "LuxItem [itemId=" + itemId + ", title=" + title + ", sellPoint=" + sellPoint + ", supplierId="
+				+ supplierId + ", catId=" + catId + ", price=" + price + ", status=" + status + ", picUrl=" + picUrl
+				+ ", picDetailed=" + picDetailed + "]";
+	}
+    
+    
+    
+    
 }

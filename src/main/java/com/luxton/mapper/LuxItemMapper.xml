@@ -120,7 +120,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxItem" >
   
-  <selectKey resultType="int" keyProperty="itemId" order="AFTER">
+  	<selectKey resultType="int" keyProperty="itemId" order="AFTER">
 			select last_insert_id()
 	</selectKey>
   

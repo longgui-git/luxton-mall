@@ -39,7 +39,9 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public LuxtonResult insertItem(LuxItem item) {
 
-		if(item.getItemId()==null) {
+		
+		
+		if(item.getItemId() == null) {
 			itemMapper.insertSelective(item);
 		}else {
 			itemMapper.updateByPrimaryKeySelective(item);
@@ -82,6 +84,13 @@ public class ItemServiceImpl implements ItemService {
 
 	
 	
+	
+	@Override
+	public LuxtonResult getItemList() {
+
+		return LuxtonResult.ok(itemMapper.selectByExample(null));
+	}
+
 	
 	
 	@Override
