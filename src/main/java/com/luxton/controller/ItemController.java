@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.luxton.pojo.LuxItem;
 import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;
 import com.luxton.service.ItemService;
