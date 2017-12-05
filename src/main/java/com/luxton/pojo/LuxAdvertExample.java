@@ -165,73 +165,63 @@ public class LuxAdvertExample {
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeIsNull() {
-            addCriterion("advert_type is null");
+        public Criteria andTypeIdIsNull() {
+            addCriterion("type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeIsNotNull() {
-            addCriterion("advert_type is not null");
+        public Criteria andTypeIdIsNotNull() {
+            addCriterion("type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeEqualTo(String value) {
-            addCriterion("advert_type =", value, "advertType");
+        public Criteria andTypeIdEqualTo(Integer value) {
+            addCriterion("type_id =", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeNotEqualTo(String value) {
-            addCriterion("advert_type <>", value, "advertType");
+        public Criteria andTypeIdNotEqualTo(Integer value) {
+            addCriterion("type_id <>", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeGreaterThan(String value) {
-            addCriterion("advert_type >", value, "advertType");
+        public Criteria andTypeIdGreaterThan(Integer value) {
+            addCriterion("type_id >", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("advert_type >=", value, "advertType");
+        public Criteria andTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type_id >=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeLessThan(String value) {
-            addCriterion("advert_type <", value, "advertType");
+        public Criteria andTypeIdLessThan(Integer value) {
+            addCriterion("type_id <", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeLessThanOrEqualTo(String value) {
-            addCriterion("advert_type <=", value, "advertType");
+        public Criteria andTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("type_id <=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeLike(String value) {
-            addCriterion("advert_type like", value, "advertType");
+        public Criteria andTypeIdIn(List<Integer> values) {
+            addCriterion("type_id in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeNotLike(String value) {
-            addCriterion("advert_type not like", value, "advertType");
+        public Criteria andTypeIdNotIn(List<Integer> values) {
+            addCriterion("type_id not in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeIn(List<String> values) {
-            addCriterion("advert_type in", values, "advertType");
+        public Criteria andTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("type_id between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andAdvertTypeNotIn(List<String> values) {
-            addCriterion("advert_type not in", values, "advertType");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdvertTypeBetween(String value1, String value2) {
-            addCriterion("advert_type between", value1, value2, "advertType");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdvertTypeNotBetween(String value1, String value2) {
-            addCriterion("advert_type not between", value1, value2, "advertType");
+        public Criteria andTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("type_id not between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
@@ -292,6 +282,136 @@ public class LuxAdvertExample {
 
         public Criteria andItemIdNotBetween(Integer value1, Integer value2) {
             addCriterion("item_id not between", value1, value2, "itemId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIsNull() {
+            addCriterion("sort_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIsNotNull() {
+            addCriterion("sort_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumEqualTo(Integer value) {
+            addCriterion("sort_num =", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotEqualTo(Integer value) {
+            addCriterion("sort_num <>", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumGreaterThan(Integer value) {
+            addCriterion("sort_num >", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sort_num >=", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumLessThan(Integer value) {
+            addCriterion("sort_num <", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumLessThanOrEqualTo(Integer value) {
+            addCriterion("sort_num <=", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIn(List<Integer> values) {
+            addCriterion("sort_num in", values, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotIn(List<Integer> values) {
+            addCriterion("sort_num not in", values, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumBetween(Integer value1, Integer value2) {
+            addCriterion("sort_num between", value1, value2, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sort_num not between", value1, value2, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendIsNull() {
+            addCriterion("item_recommend is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendIsNotNull() {
+            addCriterion("item_recommend is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendEqualTo(String value) {
+            addCriterion("item_recommend =", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendNotEqualTo(String value) {
+            addCriterion("item_recommend <>", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendGreaterThan(String value) {
+            addCriterion("item_recommend >", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendGreaterThanOrEqualTo(String value) {
+            addCriterion("item_recommend >=", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendLessThan(String value) {
+            addCriterion("item_recommend <", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendLessThanOrEqualTo(String value) {
+            addCriterion("item_recommend <=", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendLike(String value) {
+            addCriterion("item_recommend like", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendNotLike(String value) {
+            addCriterion("item_recommend not like", value, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendIn(List<String> values) {
+            addCriterion("item_recommend in", values, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendNotIn(List<String> values) {
+            addCriterion("item_recommend not in", values, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendBetween(String value1, String value2) {
+            addCriterion("item_recommend between", value1, value2, "itemRecommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemRecommendNotBetween(String value1, String value2) {
+            addCriterion("item_recommend not between", value1, value2, "itemRecommend");
             return (Criteria) this;
         }
 

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.luxton.mapper.LuxAdvertMapper;
 import com.luxton.pojo.LuxAdvert;
 import com.luxton.service.AdvertService;
 import com.luxton.utils.LuxtonResult;
@@ -27,12 +26,14 @@ public class AdvertController {
 		return result;
 	}
 	
-	@RequestMapping("/get/list/{advertType}")
+	@RequestMapping("/get/list/{typeId}")
 	@ResponseBody
-	public LuxtonResult getAdvertListByType(@PathVariable String advertType){
+	public LuxtonResult getAdvertListByType(@PathVariable Integer typeId){
 		
-		LuxtonResult result = advertService.getAdvertListByType(advertType);
+		LuxtonResult result = advertService.getAdvertListByType(typeId);
 		return result;
 	}
+	
+	
 	
 }

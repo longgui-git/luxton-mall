@@ -5,9 +5,13 @@ import java.util.Date;
 public class LuxAdvert {
     private Integer advertId;
 
-    private String advertType;
+    private Integer typeId;
 
     private Integer itemId;
+
+    private Integer sortNum;
+
+    private String itemRecommend;
 
     private Date createTime;
 
@@ -19,12 +23,12 @@ public class LuxAdvert {
         this.advertId = advertId;
     }
 
-    public String getAdvertType() {
-        return advertType;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setAdvertType(String advertType) {
-        this.advertType = advertType == null ? null : advertType.trim();
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public Integer getItemId() {
@@ -33,6 +37,22 @@ public class LuxAdvert {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
+    }
+
+    public Integer getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(Integer sortNum) {
+        this.sortNum = sortNum;
+    }
+
+    public String getItemRecommend() {
+        return itemRecommend;
+    }
+
+    public void setItemRecommend(String itemRecommend) {
+        this.itemRecommend = itemRecommend == null ? null : itemRecommend.trim();
     }
 
     public Date getCreateTime() {
