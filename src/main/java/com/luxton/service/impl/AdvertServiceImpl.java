@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.luxton.mapper.LuxAdvertMapper;
 import com.luxton.pojo.LuxAdvert;
 import com.luxton.pojo.LuxAdvertExample;
+import com.luxton.pojo.common.AdvertWithItem;
 import com.luxton.service.AdvertService;
 import com.luxton.utils.LuxtonResult;
 @RequestMapping
@@ -31,10 +32,8 @@ public class AdvertServiceImpl implements AdvertService {
 	@Override
 	public LuxtonResult getAdvertListByType(String advertType) {
 
-		LuxAdvertExample example = new LuxAdvertExample();
-		example.createCriteria().andAdvertTypeEqualTo(advertType);
 		
-		List<LuxAdvert> list = advertMapper.selectByExample(example);
+		List<AdvertWithItem> list = advertMapper.getAdvertList(advertType);
 		
 		return LuxtonResult.ok(list);
 	}

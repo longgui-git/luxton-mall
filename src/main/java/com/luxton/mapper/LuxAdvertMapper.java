@@ -2,6 +2,8 @@ package com.luxton.mapper;
 
 import com.luxton.pojo.LuxAdvert;
 import com.luxton.pojo.LuxAdvertExample;
+import com.luxton.pojo.common.AdvertWithItem;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,8 @@ public interface LuxAdvertMapper {
     int updateByPrimaryKeySelective(LuxAdvert record);
 
     int updateByPrimaryKey(LuxAdvert record);
+    
+    
+    List<AdvertWithItem> getAdvertList(String type);
+    
 }

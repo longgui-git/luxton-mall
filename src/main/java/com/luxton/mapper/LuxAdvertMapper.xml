@@ -82,6 +82,36 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
+  
+  
+  <select id="getAdvertList" resultType="com.luxton.pojo.common.AdvertWithItem" parameterType="java.lang.String" >
+    SELECT  la.advert_id ,la.item_id itemId ,item.pic_url picUrl ,item.title
+		,item.price ,item.sell_point sellPoint
+		
+	FROM lux_advert la
+	LEFT JOIN lux_item item
+	ON la.item_id = item.item_id
+	WHERE la.advert_type = #{advertType,jdbcType=VARCHAR}
+
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

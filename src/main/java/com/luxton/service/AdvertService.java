@@ -9,4 +9,6 @@ public interface AdvertService {
 	
 	public LuxtonResult getAdvertListByType(String advertType);
 	
+	
+	
 }
