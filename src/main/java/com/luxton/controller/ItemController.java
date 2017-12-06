@@ -59,6 +59,19 @@ public class ItemController {
 		return result;
 	}
 	
+	@RequestMapping("/update/status/{status}")
+	@ResponseBody
+	public LuxtonResult updateItemStatus(@RequestBody List<Integer> list ,@PathVariable Boolean status) {
+		
+		LuxtonResult result = itemService.updateItemStatus(list, status);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping("/insert/property/{itemId}")

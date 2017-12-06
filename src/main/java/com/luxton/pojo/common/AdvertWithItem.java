@@ -6,7 +6,13 @@ public class AdvertWithItem extends LuxItem{
 
 	private Integer advertId;
 	
-	private String item_recommend;
+	private String itemRecommend;
+	
+	private Integer sortNum;
+	
+	private String typeTitle;
+	
+	private Integer typeId;
 
 	public Integer getAdvertId() {
 		return advertId;
@@ -16,13 +22,38 @@ public class AdvertWithItem extends LuxItem{
 		this.advertId = advertId;
 	}
 
-	public String getItem_recommend() {
-		return item_recommend;
+	public String getItemRecommend() {
+		return itemRecommend;
 	}
 
-	public void setItem_recommend(String item_recommend) {
-		this.item_recommend = item_recommend;
+	public void setItemRecommend(String itemRecommend) {
+		this.itemRecommend = itemRecommend;
 	}
+
+	public Integer getSortNum() {
+		return sortNum;
+	}
+
+	public void setSortNum(Integer sortNum) {
+		this.sortNum = sortNum;
+	}
+
+	public String getTypeTitle() {
+		return typeTitle;
+	}
+
+	public void setTypeTitle(String typeTitle) {
+		this.typeTitle = typeTitle;
+	}
+
+	public Integer getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
+	}
+
 	
 	
 	

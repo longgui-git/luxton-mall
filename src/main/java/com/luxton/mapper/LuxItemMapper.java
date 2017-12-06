@@ -27,4 +27,7 @@ public interface LuxItemMapper {
     int updateByPrimaryKeySelective(LuxItem record);
 
     int updateByPrimaryKey(LuxItem record);
+    
+    
+    Boolean updateItemStatus(@Param("list") List<Integer> list, @Param("status") Boolean status);
 }

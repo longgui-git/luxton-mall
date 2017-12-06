@@ -83,8 +83,6 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	
-	
-	
 	@Override
 	public LuxtonResult getItemList() {
 
@@ -92,7 +90,31 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	
+	@Override
+	public LuxtonResult updateItemStatus(List<Integer> list, Boolean status) {
+
+		Boolean s = itemMapper.updateItemStatus(list, status);
+		
+		return LuxtonResult.ok(s);
+	}
+
+	@Override
+	public LuxtonResult deleteItem(List<Integer> list) {
+		//删除对应的广告，sku？，item_property,
+		
+		
+		return null;
+	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	@Override
 	public LuxtonResult insertItemProperty(List<PropertyWithValue> list ,Integer itemId) {
 

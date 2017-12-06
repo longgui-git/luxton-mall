@@ -31,5 +31,7 @@ public interface LuxAdvertMapper {
     int updateByPrimaryKey(LuxAdvert record);
     
     
-    List<AdvertWithItem> getAdvertList(Integer typeId);
+    List<AdvertWithItem> getAdvertListByType(@Param("typeId") Integer typeId);
+    
+    List<AdvertWithItem> getAdvertList();
 }

@@ -10,9 +10,13 @@ public interface AdvertService {
 	
 	public LuxtonResult getAdvertListByType(Integer typeId);
 	
+	public LuxtonResult deleteAdvert(Integer advertId);
+	
 	
 	public LuxtonResult insertAdvertType(LuxAdvertType type);
 	
 	public LuxtonResult getAdvertTypeList();
+	
+	public LuxtonResult deleteAdvertType(Integer typeId);
 	
 }

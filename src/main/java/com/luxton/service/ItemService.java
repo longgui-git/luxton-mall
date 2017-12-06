@@ -15,6 +15,11 @@ public interface ItemService {
 	public LuxtonResult getItemList();
 	
 	
+	public LuxtonResult updateItemStatus(List<Integer> list ,Boolean status);
+	
+	public LuxtonResult deleteItem(List<Integer> list);
+	
+	
 	public LuxtonResult insertItemProperty(List<PropertyWithValue> list ,Integer itemId);
 	
 }

@@ -87,6 +87,38 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
+  
+  
+  <update id="updateItemStatus"  >
+    update lux_item
+    set status = #{status,jdbcType=BIT}
+      
+    where item_id in
+    <foreach item="itemId" collection="list" open="(" separator="," close=")">
+    	#{itemId}
+    </foreach>
+    
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

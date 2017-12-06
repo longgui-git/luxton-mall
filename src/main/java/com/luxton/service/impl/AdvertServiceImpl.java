@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.luxton.mapper.LuxAdvertMapper;
 import com.luxton.mapper.LuxAdvertTypeMapper;
 import com.luxton.pojo.LuxAdvert;
+import com.luxton.pojo.LuxAdvertExample;
 import com.luxton.pojo.LuxAdvertType;
 import com.luxton.pojo.common.AdvertWithItem;
 import com.luxton.service.AdvertService;
@@ -36,11 +37,32 @@ public class AdvertServiceImpl implements AdvertService {
 	@Override
 	public LuxtonResult getAdvertListByType(Integer typeId) {
 
-		
-		List<AdvertWithItem> list = advertMapper.getAdvertList(typeId);
+		List<AdvertWithItem> list = null;
+		if(typeId == null){
+			list = advertMapper.getAdvertList();
+		}else{
+			list = advertMapper.getAdvertListByType(typeId);
+		}
+				
 		
 		return LuxtonResult.ok(list);
 	}
+
+	@Override
+	public LuxtonResult deleteAdvert(Integer advertId) {
+
+		advertMapper.deleteByPrimaryKey(advertId);
+		
+		return LuxtonResult.ok();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public LuxtonResult insertAdvertType(LuxAdvertType type) {
@@ -56,6 +78,19 @@ public class AdvertServiceImpl implements AdvertService {
 		List<LuxAdvertType> list = typeMapper.selectByExample(null);
 		
 		return LuxtonResult.ok(list);
+	}
+
+	@Override
+	public LuxtonResult deleteAdvertType(Integer typeId) {
+
+		//先删除对应的广告，再删除类型
+		LuxAdvertExample example = new LuxAdvertExample();
+		example.createCriteria().andTypeIdEqualTo(typeId);
+		advertMapper.deleteByExample(example);
+		
+		typeMapper.deleteByPrimaryKey(typeId);
+		
+		return LuxtonResult.ok();
 	}
 
 	
