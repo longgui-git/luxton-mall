@@ -13,6 +13,7 @@ import com.luxton.mapper.LuxItemPropertyMapper;
 import com.luxton.mapper.LuxPropertyMapper;
 import com.luxton.mapper.LuxSupplierMapper;
 import com.luxton.pojo.LuxItem;
+import com.luxton.pojo.LuxItemExample;
 import com.luxton.pojo.LuxItemProperty;
 import com.luxton.pojo.LuxProperty;
 import com.luxton.pojo.LuxPropertyExample;
@@ -84,9 +85,14 @@ public class ItemServiceImpl implements ItemService {
 
 	
 	@Override
-	public LuxtonResult getItemList() {
+	public LuxtonResult getItemList(Boolean status) {
 
-		return LuxtonResult.ok(itemMapper.selectByExample(null));
+		LuxItemExample example = new LuxItemExample();
+		if(status!=null){
+			example.createCriteria().andStatusEqualTo(status);
+		}
+		
+		return LuxtonResult.ok(itemMapper.selectByExample(example));
 	}
 
 	

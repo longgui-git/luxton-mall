@@ -2,6 +2,8 @@ package com.luxton.mapper;
 
 import com.luxton.pojo.LuxOrder;
 import com.luxton.pojo.LuxOrderExample;
+import com.luxton.pojo.common.OrderWithItemList;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,8 @@ public interface LuxOrderMapper {
     int updateByPrimaryKeySelective(LuxOrder record);
 
     int updateByPrimaryKey(LuxOrder record);
+    
+    
+    List<OrderWithItemList> getOrderList();
+    
 }

@@ -17,6 +17,8 @@ public class LuxOrderItem {
 
     private String itemTitle;
 
+    private String itemType;
+
     public Integer getOrderItemId() {
         return orderItemId;
     }
@@ -71,5 +73,13 @@ public class LuxOrderItem {
 
     public void setItemTitle(String itemTitle) {
         this.itemTitle = itemTitle == null ? null : itemTitle.trim();
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType == null ? null : itemType.trim();
     }
 }

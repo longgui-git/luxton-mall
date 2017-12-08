@@ -544,6 +544,76 @@ public class LuxOrderItemExample {
             addCriterion("item_title not between", value1, value2, "itemTitle");
             return (Criteria) this;
         }
+
+        public Criteria andItemTypeIsNull() {
+            addCriterion("item_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeIsNotNull() {
+            addCriterion("item_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeEqualTo(String value) {
+            addCriterion("item_type =", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeNotEqualTo(String value) {
+            addCriterion("item_type <>", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeGreaterThan(String value) {
+            addCriterion("item_type >", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("item_type >=", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeLessThan(String value) {
+            addCriterion("item_type <", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeLessThanOrEqualTo(String value) {
+            addCriterion("item_type <=", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeLike(String value) {
+            addCriterion("item_type like", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeNotLike(String value) {
+            addCriterion("item_type not like", value, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeIn(List<String> values) {
+            addCriterion("item_type in", values, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeNotIn(List<String> values) {
+            addCriterion("item_type not in", values, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeBetween(String value1, String value2) {
+            addCriterion("item_type between", value1, value2, "itemType");
+            return (Criteria) this;
+        }
+
+        public Criteria andItemTypeNotBetween(String value1, String value2) {
+            addCriterion("item_type not between", value1, value2, "itemType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

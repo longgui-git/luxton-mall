@@ -12,7 +12,7 @@ public interface ItemService {
 	
 	public LuxtonResult getItem(Integer itemId);
 	
-	public LuxtonResult getItemList();
+	public LuxtonResult getItemList(Boolean status);
 	
 	
 	public LuxtonResult updateItemStatus(List<Integer> list ,Boolean status);

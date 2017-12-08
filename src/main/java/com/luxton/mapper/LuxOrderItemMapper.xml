@@ -9,6 +9,7 @@
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="price_total" property="priceTotal" jdbcType="DECIMAL" />
     <result column="item_title" property="itemTitle" jdbcType="VARCHAR" />
+    <result column="item_type" property="itemType" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_item_id, order_id, item_id, num, price, price_total, item_title
+    order_item_id, order_id, item_id, num, price, price_total, item_title, item_type
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luxton.pojo.LuxOrderItemExample" >
     select
@@ -85,6 +86,32 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
+  
+  
+  
+  <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from lux_order_item
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -104,10 +131,10 @@
   <insert id="insert" parameterType="com.luxton.pojo.LuxOrderItem" >
     insert into lux_order_item (order_item_id, order_id, item_id, 
       num, price, price_total, 
-      item_title)
+      item_title, item_type)
     values (#{orderItemId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}, 
       #{num,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{priceTotal,jdbcType=DECIMAL}, 
-      #{itemTitle,jdbcType=VARCHAR})
+      #{itemTitle,jdbcType=VARCHAR}, #{itemType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.luxton.pojo.LuxOrderItem" >
     insert into lux_order_item
@@ -133,6 +160,9 @@
       <if test="itemTitle != null" >
         item_title,
       </if>
+      <if test="itemType != null" >
+        item_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderItemId != null" >
@@ -155,6 +185,9 @@
       </if>
       <if test="itemTitle != null" >
         #{itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null" >
+        #{itemType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +221,9 @@
       <if test="record.itemTitle != null" >
         item_title = #{record.itemTitle,jdbcType=VARCHAR},
       </if>
+      <if test="record.itemType != null" >
+        item_type = #{record.itemType,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +237,8 @@
       num = #{record.num,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DECIMAL},
       price_total = #{record.priceTotal,jdbcType=DECIMAL},
-      item_title = #{record.itemTitle,jdbcType=VARCHAR}
+      item_title = #{record.itemTitle,jdbcType=VARCHAR},
+      item_type = #{record.itemType,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +264,9 @@
       <if test="itemTitle != null" >
         item_title = #{itemTitle,jdbcType=VARCHAR},
       </if>
+      <if test="itemType != null" >
+        item_type = #{itemType,jdbcType=VARCHAR},
+      </if>
     </set>
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </update>
@@ -237,7 +277,8 @@
       num = #{num,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
       price_total = #{priceTotal,jdbcType=DECIMAL},
-      item_title = #{itemTitle,jdbcType=VARCHAR}
+      item_title = #{itemTitle,jdbcType=VARCHAR},
+      item_type = #{itemType,jdbcType=VARCHAR}
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </update>
 </mapper>

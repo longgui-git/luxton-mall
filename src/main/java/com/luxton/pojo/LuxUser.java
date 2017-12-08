@@ -9,6 +9,8 @@ public class LuxUser {
 
     private String password;
 
+    private String name;
+
     private String phone;
 
     private String email;
@@ -16,6 +18,8 @@ public class LuxUser {
     private Date createTime;
 
     private Date updateTime;
+
+    private String remark;
 
     public Long getUserId() {
         return userId;
@@ -39,6 +43,14 @@ public class LuxUser {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getPhone() {
@@ -71,5 +83,13 @@ public class LuxUser {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

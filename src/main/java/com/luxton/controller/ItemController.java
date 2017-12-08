@@ -42,9 +42,9 @@ public class ItemController {
 	
 	@RequestMapping("/get/list")
 	@ResponseBody
-	public LuxtonResult getItemList() {
+	public LuxtonResult getItemList(Boolean status) {
 		
-		LuxtonResult result = itemService.getItemList();
+		LuxtonResult result = itemService.getItemList(status);
 		
 		return result;
 	}

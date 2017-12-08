@@ -27,4 +27,8 @@ public interface LuxOrderItemMapper {
     int updateByPrimaryKeySelective(LuxOrderItem record);
 
     int updateByPrimaryKey(LuxOrderItem record);
+    
+    
+    
+    List<LuxOrderItem> getByOrderId(String orderId);
 }

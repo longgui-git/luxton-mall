@@ -88,6 +88,27 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
+  
+  
+  
+  <select id="getOrderList" resultType="com.luxton.pojo.common.OrderWithItemList" >
+    SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
+	FROM lux_order
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

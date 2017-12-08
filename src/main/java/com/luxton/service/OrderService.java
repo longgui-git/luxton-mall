@@ -1,0 +1,11 @@
+package com.luxton.service;
+
+import com.luxton.utils.LuxtonResult;
+
+public interface OrderService {
+
+	public LuxtonResult getOrderList(Boolean status,Integer page,Integer stage);
+	
+	public LuxtonResult gteOrderByOrderId(String orderId);
+	
+}

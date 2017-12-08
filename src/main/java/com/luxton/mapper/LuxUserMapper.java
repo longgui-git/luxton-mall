@@ -27,4 +27,7 @@ public interface LuxUserMapper {
     int updateByPrimaryKeySelective(LuxUser record);
 
     int updateByPrimaryKey(LuxUser record);
+    
+    
+    LuxUser getUserByUserName(String userName);
 }
