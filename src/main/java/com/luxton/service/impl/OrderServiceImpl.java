@@ -67,4 +67,15 @@ public class OrderServiceImpl implements OrderService {
 		return LuxtonResult.ok(orderItem);
 	}
 
+	@Override
+	public LuxtonResult updateOrderStatus(String orderId, Boolean status) {
+
+		orderMapper.updateOrderStatus(orderId, status);
+		
+		return LuxtonResult.ok();
+	}
+	
+	
+	
+
 }

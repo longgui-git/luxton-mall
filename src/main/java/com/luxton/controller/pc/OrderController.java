@@ -1,12 +1,10 @@
-package com.luxton.controller;
+package com.luxton.controller.pc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/item/property")
-public class ItemPropertyController {
+@RequestMapping("/pc/order")
+public class OrderController {
 
-	
-	
 }
