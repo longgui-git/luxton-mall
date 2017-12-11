@@ -8,17 +8,21 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.luxton.mapper.LuxItemMapper;
 import com.luxton.mapper.LuxItemPropertyMapper;
 import com.luxton.mapper.LuxItemSkuMapper;
 import com.luxton.mapper.LuxPropertyMapper;
 import com.luxton.mapper.LuxSupplierMapper;
 import com.luxton.pojo.LuxItem;
+import com.luxton.pojo.LuxItemExample;
 import com.luxton.pojo.LuxItemSku;
 import com.luxton.pojo.LuxProperty;
 import com.luxton.pojo.LuxPropertyExample;
 import com.luxton.pojo.LuxPropertyValue;
 import com.luxton.pojo.LuxSupplier;
+import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.pojo.common.PropertyWithValue;
 import com.luxton.service.pc.ItemPcService;
 import com.luxton.utils.LuxtonResult;
@@ -74,6 +78,37 @@ public class ItemPcServiceImpl implements ItemPcService {
 
 	
 	
+	
+	
+	
+	@Override
+	public LuxtonResult getItemList(Integer catId, Integer page, Integer stage) {
+
+		
+		PageHelper.startPage(page, stage);
+		
+		LuxItemExample example = new LuxItemExample();
+		if(catId != null) {
+			example.createCriteria().andCatIdEqualTo(catId);
+		}
+		
+		List<LuxItem> list = itemMapper.selectByExample(example);
+		
+		DataWithPageResults data = new DataWithPageResults();
+		
+		data.setRows(list);
+		
+		PageInfo<LuxItem> info = new PageInfo<>();
+		data.setTotal(info.getTotal());
+		
+		return LuxtonResult.ok(data);
+	}
+
+
+
+
+
+
 	@Override
 	public LuxtonResult getItemSku(Integer itemId ,String properties) {
 
