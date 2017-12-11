@@ -13,7 +13,7 @@ import com.luxton.service.AdvertService;
 import com.luxton.utils.LuxtonResult;
 
 @Controller
-@RequestMapping("/advert")
+@RequestMapping("/back/advert")
 public class AdvertController {
 
 	@Autowired

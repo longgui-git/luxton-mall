@@ -15,7 +15,7 @@ import com.luxton.utils.LuxtonResult;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserControllerPC {
 
 	@Autowired
 	private UserLoginService userService;

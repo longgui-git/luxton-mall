@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/pc/order")
-public class OrderController {
+public class OrderControllerPC {
 
 }

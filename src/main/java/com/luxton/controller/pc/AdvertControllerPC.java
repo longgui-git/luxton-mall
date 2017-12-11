@@ -5,22 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.luxton.service.ItemCatService;
+import com.luxton.service.AdvertService;
 import com.luxton.utils.LuxtonResult;
 
 @Controller
-@RequestMapping("/pc/item/cat")
-public class ItemPropertyController {
+@RequestMapping("/pc/advert")
+public class AdvertControllerPC {
 
 	@Autowired
-	private ItemCatService catService;
+	private AdvertService advertService;
 	
-	@RequestMapping("/get/list")
+	@RequestMapping("/get/list/{typeId}")
 	@ResponseBody
-	public LuxtonResult getItemCatList() {
+	public LuxtonResult getAdvertListByType(Integer typeId){
 		
-		LuxtonResult result = catService.getItemCatList();
+		LuxtonResult result = advertService.getAdvertListByType(typeId);
 		return result;
 	}
-	
 }

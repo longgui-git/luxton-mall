@@ -27,4 +27,7 @@ public interface LuxItemSkuMapper {
     int updateByPrimaryKeySelective(LuxItemSku record);
 
     int updateByPrimaryKey(LuxItemSku record);
+    
+    
+    LuxItemSku getSkuInfo(@Param("itemId") Integer itemId ,@Param("properties") String properties);
 }

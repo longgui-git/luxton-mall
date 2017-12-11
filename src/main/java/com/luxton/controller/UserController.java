@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luxton.pojo.LuxUser;
@@ -20,15 +21,15 @@ public class UserController {
 	
 	@RequestMapping("/get/list/{page}")
 	@ResponseBody
-	public LuxtonResult getUserList(@PathVariable Integer page ,Integer stage) {
+	public LuxtonResult getUserList(@PathVariable Integer page ,@RequestParam(value="stage" ,defaultValue="10") Integer stage) {
 		
 		LuxtonResult result = userService.getUserList(page, stage);
 		return result;
 	}
 	
-	@RequestMapping("/get")
+	@RequestMapping("/get/{userName}")
 	@ResponseBody
-	public LuxtonResult getUserByUserName(String userName) {
+	public LuxtonResult getUserByUserName(@PathVariable String userName) {
 		
 		LuxtonResult result = userService.getUserByUserName(userName);
 		return result;

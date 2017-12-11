@@ -2,24 +2,31 @@ package com.luxton.controller.pc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.luxton.service.AdvertService;
+import com.luxton.service.pc.ItemPcService;
 import com.luxton.utils.LuxtonResult;
 
 @Controller
-@RequestMapping("/pc/advert")
-public class AdvertController {
+@RequestMapping("/pc/item")
+public class ItemControllerPC {
 
 	@Autowired
-	private AdvertService advertService;
+	private ItemPcService itemService;
 	
-	@RequestMapping("/get/list/{typeId}")
+	@RequestMapping("/get/{itemId}")
 	@ResponseBody
-	public LuxtonResult getAdvertListByType(Integer typeId){
+	public LuxtonResult getItem(@PathVariable Integer itemId) {
 		
-		LuxtonResult result = advertService.getAdvertListByType(typeId);
+		LuxtonResult result = itemService.getItem(itemId);
+		
 		return result;
 	}
+	
+	
+	
+	
+	
 }

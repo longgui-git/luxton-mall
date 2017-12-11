@@ -30,7 +30,15 @@ public class OrderServiceImpl implements OrderService {
 
 		PageHelper.startPage(page,stage);
 		
-		List<OrderWithItemList> list = orderMapper.getOrderList();
+		List<OrderWithItemList> list = null;
+		if(status == null){
+			list = orderMapper.getOrderList();
+		}else{
+			list = orderMapper.getOrderListByStatus(status);
+		}
+		
+		
+				
 		List<OrderWithItemList> listResult = new ArrayList<>();
 		
 		for(OrderWithItemList order : list){
@@ -64,7 +72,10 @@ public class OrderServiceImpl implements OrderService {
 		List<LuxOrderItem> items = oitemMapper.getByOrderId(order.getOrderId());
 		orderItem.setItems(items);
 		
-		return LuxtonResult.ok(orderItem);
+		List<OrderWithItemList> listResult = new ArrayList<>();
+		listResult.add(orderItem);
+		
+		return LuxtonResult.ok(listResult);
 	}
 
 	@Override

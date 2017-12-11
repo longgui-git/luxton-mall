@@ -106,7 +106,11 @@
   </update>
   
   
-  
+  <select id="getOrderListByStatus" resultType="com.luxton.pojo.common.OrderWithItemList" >
+    SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
+	FROM lux_order
+	where STATUS = #{status,jdbcType=INTEGER}
+  </select>
   
   
   

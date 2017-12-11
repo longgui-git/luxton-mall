@@ -84,6 +84,34 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
+  
+  
+  
+  
+  
+  <select id="getSkuInfo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from lux_item_sku
+    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
