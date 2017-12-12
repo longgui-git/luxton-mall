@@ -19,7 +19,7 @@ public class OrderController {
 	
 	@RequestMapping("/get/list/{page}")
 	@ResponseBody
-	public LuxtonResult getOrderList(Boolean status ,@PathVariable Integer page 
+	public LuxtonResult getOrderList(Integer status ,@PathVariable Integer page 
 			,@RequestParam(defaultValue="10") Integer stage) {
 		
 		LuxtonResult result = orderService.getOrderList(status, page, stage);

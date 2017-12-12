@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 	private LuxOrderItemMapper oitemMapper;
 	
 	@Override
-	public LuxtonResult getOrderList(Boolean status,Integer page,Integer stage) {
+	public LuxtonResult getOrderList(Integer status,Integer page,Integer stage) {
 
 		PageHelper.startPage(page,stage);
 		
@@ -62,7 +62,9 @@ public class OrderServiceImpl implements OrderService {
 	public LuxtonResult gteOrderByOrderId(String orderId) {
 
 		LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
-		
+		if(order == null){
+			return LuxtonResult.ok();
+		}
 		OrderWithItemList orderItem = new OrderWithItemList();
 		orderItem.setCreateTime(order.getCreateTime());
 		orderItem.setEndTime(order.getEndTime());

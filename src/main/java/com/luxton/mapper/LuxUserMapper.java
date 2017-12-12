@@ -29,5 +29,5 @@ public interface LuxUserMapper {
     int updateByPrimaryKey(LuxUser record);
     
     
-    LuxUser getUserByUserName(String userName);
+    List<LuxUser> getUserByUserName(String userName);
 }
