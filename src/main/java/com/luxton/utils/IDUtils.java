@@ -93,7 +93,7 @@ public class IDUtils {
 		String currTime = getCurrTime();
 		// 8位日期
 		
-		String strTime = currTime.substring(7, currTime.length());
+		String strTime = currTime.substring(6, currTime.length());
 		// 四位随机数
 		String strRandom = buildRandom(4) + "";
 		// 10位序列号,可以自行调整。

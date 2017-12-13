@@ -27,14 +27,15 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object arg2) throws Exception {
 		
-		String adminRole = (String)request.getSession().getAttribute("adminRole");
-		
-		if(adminRole != null){
-			return true;
-		}
-		
-		
-		return false;
+		return true;
+//		String adminRole = (String)request.getSession().getAttribute("adminRole");
+//		
+//		if(adminRole != null){
+//			return true;
+//		}
+//		
+//		
+//		return false;
 	}
 
 }

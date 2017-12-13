@@ -27,12 +27,32 @@ public class ItemControllerPC {
 	}
 	
 	
-	@RequestMapping("/get/list/{page}")
+	@RequestMapping("/searchByCatId/{page}")
 	@ResponseBody
 	public LuxtonResult getItemList(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
 			Integer catId) {
 		
-		LuxtonResult result = itemService.getItemList(catId, page, stage);
+		LuxtonResult result = itemService.getItemListByCatId(catId, page, stage);
+		
+		return result;
+	}
+	
+	@RequestMapping("/searchBySupplierId/{page}")
+	@ResponseBody
+	public LuxtonResult getItemListBySupplierId(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
+			Integer supplierId) {
+		
+		LuxtonResult result = itemService.getItemListBySupplierId(supplierId, page, stage);
+		
+		return result;
+	}
+	
+	@RequestMapping("/searchBySearchId/{page}")
+	@ResponseBody
+	public LuxtonResult getItemListBySearchId(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
+			Integer propertyValueId) {
+		
+		LuxtonResult result = itemService.getItemListBySearchId(propertyValueId, page, stage);
 		
 		return result;
 	}

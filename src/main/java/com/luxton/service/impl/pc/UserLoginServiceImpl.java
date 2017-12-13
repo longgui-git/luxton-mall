@@ -65,6 +65,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 			LuxUser user = list.get(0);
 			//验证正确
 			req.getSession().setAttribute("userId", user.getUserId());
+			return LuxtonResult.ok();
 		}
 		
 		return LuxtonResult.build(572, "用户名或密码错误");

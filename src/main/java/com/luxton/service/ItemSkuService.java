@@ -11,6 +11,6 @@ public interface ItemSkuService {
 	
 	public LuxtonResult getItemSkuList(Integer itemId);
 	
-	
+	public LuxtonResult updateSkuValue(Integer skuId);
 	
 }

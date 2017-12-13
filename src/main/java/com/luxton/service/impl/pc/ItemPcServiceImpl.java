@@ -82,7 +82,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 	
 	
 	@Override
-	public LuxtonResult getItemList(Integer catId, Integer page, Integer stage) {
+	public LuxtonResult getItemListByCatId(Integer catId, Integer page, Integer stage) {
 
 		
 		PageHelper.startPage(page, stage);
@@ -106,6 +106,56 @@ public class ItemPcServiceImpl implements ItemPcService {
 
 
 
+
+	@Override
+	public LuxtonResult getItemListBySearchId(Integer propertyValueId, Integer page, Integer stage) {
+
+		PageHelper.startPage(page, stage);
+		
+		
+		List<LuxItem> list = itemMapper.getItemBySearchId(propertyValueId);
+		
+		DataWithPageResults data = new DataWithPageResults();
+		
+		data.setRows(list);
+		
+		PageInfo<LuxItem> info = new PageInfo<>();
+		data.setTotal(info.getTotal());
+		
+		return LuxtonResult.ok(data);
+	}
+
+
+
+
+
+
+	@Override
+	public LuxtonResult getItemListBySupplierId(Integer supplierId, Integer page, Integer stage) {
+
+		PageHelper.startPage(page, stage);
+		
+		LuxItemExample example = new LuxItemExample();
+		if(supplierId != null) {
+			example.createCriteria().andSupplierIdEqualTo(supplierId);
+		}
+		
+		List<LuxItem> list = itemMapper.selectByExample(example);
+		
+		DataWithPageResults data = new DataWithPageResults();
+		
+		data.setRows(list);
+		
+		PageInfo<LuxItem> info = new PageInfo<>();
+		data.setTotal(info.getTotal());
+		
+		return LuxtonResult.ok(data);
+	}
+
+
+
+	
+	
 
 
 

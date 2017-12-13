@@ -31,7 +31,7 @@ public class OrderController {
 	@ResponseBody
 	public LuxtonResult gteOrderByOrderId(@PathVariable String orderId) {
 		
-		LuxtonResult result = orderService.gteOrderByOrderId(orderId);
+		LuxtonResult result = orderService.getOrderByOrderId(orderId);
 		return result;
 	}
 	

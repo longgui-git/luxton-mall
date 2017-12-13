@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public LuxtonResult gteOrderByOrderId(String orderId) {
+	public LuxtonResult getOrderByOrderId(String orderId) {
 
 		LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
 		if(order == null){

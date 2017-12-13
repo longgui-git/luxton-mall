@@ -41,4 +41,10 @@ public class ItemSkuServiceImpl implements ItemSkuService {
 		return LuxtonResult.ok(list);
 	}
 
+	@Override
+	public LuxtonResult updateSkuValue(Integer skuId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -6,10 +6,15 @@ public interface ItemPcService {
 
 	public LuxtonResult getItem(Integer itemId);
 	
-	public LuxtonResult getItemList(Integer catId,Integer page ,Integer stage);
+	public LuxtonResult getItemListByCatId(Integer catId,Integer page ,Integer stage);
 	
+	public LuxtonResult getItemListBySupplierId(Integer supplierId,Integer page ,Integer stage);
+	
+	public LuxtonResult getItemListBySearchId(Integer propertyValueId,Integer page ,Integer stage);
 	
 	
 	public LuxtonResult getItemSku(Integer itemId ,String properties);
+	
+	
 	
 }

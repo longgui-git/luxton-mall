@@ -36,18 +36,6 @@ public class UserControllerPC {
 		
 		LuxtonResult result = userService.getUserLogin(req, user.getUsername(), user.getPassword());
 		
-		try {
-			if(result.getStatus().equals(200)){
-				res.sendRedirect("http://www.luxtonusa.com");
-			}else{
-				res.sendRedirect("http://www.luxtonusa.com/error");
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		
 		return result;
 	}
 	

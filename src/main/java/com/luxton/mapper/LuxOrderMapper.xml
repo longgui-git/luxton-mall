@@ -138,6 +138,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.luxton.pojo.LuxOrder" >
+  
+  
     insert into lux_order (order_id, payment, payment_type, 
       post_fee, status, create_time, 
       update_time, end_time, user_id

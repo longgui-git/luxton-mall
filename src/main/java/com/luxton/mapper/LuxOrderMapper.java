@@ -37,4 +37,7 @@ public interface LuxOrderMapper {
     
     Boolean updateOrderStatus(@Param("orderId") String orderId, @Param("status") Boolean status);
     
+    
+    
+    
 }
