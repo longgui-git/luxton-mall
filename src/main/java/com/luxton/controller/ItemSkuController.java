@@ -38,4 +38,12 @@ public class ItemSkuController {
 	}
 	
 	
+	@RequestMapping("/update")
+	@ResponseBody
+	public LuxtonResult updateSkuValue(@RequestBody LuxItemSku sku) {
+		
+		LuxtonResult result = skuService.updateSkuValue(sku);
+		return result;
+	}
+	
 }

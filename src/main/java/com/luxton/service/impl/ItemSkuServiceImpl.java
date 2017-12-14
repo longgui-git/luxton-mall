@@ -42,9 +42,11 @@ public class ItemSkuServiceImpl implements ItemSkuService {
 	}
 
 	@Override
-	public LuxtonResult updateSkuValue(Integer skuId) {
-		// TODO Auto-generated method stub
-		return null;
+	public LuxtonResult updateSkuValue(LuxItemSku sku) {
+
+		skuMapper.updateByPrimaryKeySelective(sku);
+		
+		return LuxtonResult.ok();
 	}
 
 }
