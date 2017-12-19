@@ -98,7 +98,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 		
 		data.setRows(list);
 		
-		PageInfo<LuxItem> info = new PageInfo<>();
+		PageInfo<LuxItem> info = new PageInfo<>(list);
 		data.setTotal(info.getTotal());
 		
 		return LuxtonResult.ok(data);

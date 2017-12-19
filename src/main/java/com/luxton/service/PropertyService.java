@@ -11,4 +11,9 @@ public interface PropertyService {
 	
 	public LuxtonResult deleteProperty(Integer propertyId);
 	
+	
+	
+	
+	public LuxtonResult getPropertySearchValue(Integer catId);
+	
 }

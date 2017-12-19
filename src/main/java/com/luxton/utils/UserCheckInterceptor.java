@@ -27,14 +27,14 @@ public class UserCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object arg2) throws Exception {
 		
-		String userId = (String)request.getSession().getAttribute("userId");
+//		String userId = (String)request.getSession().getAttribute("userId");
+//		
+//		if(userId != null){
+//			return true;
+//		}
 		
-		if(userId != null){
-			return true;
-		}
 		
-		
-		return false;
+		return true;
 	}
 
 }

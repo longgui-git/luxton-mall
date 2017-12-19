@@ -22,4 +22,12 @@ public class AdvertControllerPC {
 		LuxtonResult result = advertService.getAdvertListByType(typeId);
 		return result;
 	}
+	
+	@RequestMapping("/getAll")
+	@ResponseBody
+	public LuxtonResult getAllAdvert(){
+		
+		LuxtonResult result = advertService.getAllAdvert();
+		return result;
+	}
 }

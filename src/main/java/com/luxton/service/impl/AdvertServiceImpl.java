@@ -1,5 +1,6 @@
 package com.luxton.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.luxton.pojo.LuxAdvert;
 import com.luxton.pojo.LuxAdvertExample;
 import com.luxton.pojo.LuxAdvertType;
 import com.luxton.pojo.common.AdvertWithItem;
+import com.luxton.pojo.common.AdvertWithType;
 import com.luxton.service.AdvertService;
 import com.luxton.utils.LuxtonResult;
 @Service
@@ -56,12 +58,35 @@ public class AdvertServiceImpl implements AdvertService {
 		return LuxtonResult.ok();
 	}
 	
+	@Override
+	public LuxtonResult getAllAdvert() {
+
+		List<LuxAdvertType> list = typeMapper.selectByExample(null);
+		List<AdvertWithType> listResult = new ArrayList<>();
+		
+		for(LuxAdvertType type : list){
+			
+			AdvertWithType at = new AdvertWithType();
+			at.setTypeId(type.getTypeId());
+			at.setTypeTitle(type.getTypeTitle());
+			
+			List<AdvertWithItem> advertList = advertMapper.getAdvertListByType(type.getTypeId());
+			at.setAdvertList(advertList);
+			
+			listResult.add(at);
+		}
+		
+		
+		return LuxtonResult.ok(listResult);
+	}
 	
 	
 	
 	
 	
 	
+	
+
 	
 
 	@Override

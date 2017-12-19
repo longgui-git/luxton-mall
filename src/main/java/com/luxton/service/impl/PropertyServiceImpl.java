@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luxton.mapper.LuxItemPropertyMapper;
 import com.luxton.mapper.LuxPropertyMapper;
 import com.luxton.mapper.LuxPropertyValueMapper;
 import com.luxton.pojo.LuxProperty;
@@ -24,6 +25,9 @@ public class PropertyServiceImpl implements PropertyService {
 	
 	@Autowired
 	private LuxPropertyValueMapper valueMapper;
+	
+	@Autowired
+	private LuxItemPropertyMapper ipropertyMapper;
 	
 	@Override
 	public LuxtonResult insertProperty(LuxProperty property) {
@@ -74,6 +78,37 @@ public class PropertyServiceImpl implements PropertyService {
 		propertyMapper.deleteByPrimaryKey(propertyId);
 		
 		return LuxtonResult.ok();
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public LuxtonResult getPropertySearchValue(Integer catId) {
+		
+		LuxPropertyExample example = new LuxPropertyExample();
+		example.createCriteria().andCatIdEqualTo(catId).andIsSearchEqualTo(true);
+		
+		List<LuxProperty> propertyList = propertyMapper.selectByExample(example);
+		List<PropertyWithValue> list = new ArrayList<>();
+		for(LuxProperty property : propertyList) {
+			PropertyWithValue pv = new PropertyWithValue();
+			pv.setProperty(property);
+			
+			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId());
+			pv.setValues(valueList);
+			
+			list.add(pv);
+			
+		}
+		
+		
+		return null;
 	}
 	
 	

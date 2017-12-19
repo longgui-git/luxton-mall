@@ -27,6 +27,16 @@ public class ItemControllerPC {
 	}
 	
 	
+	/** 
+	 * @Title: getItemList 
+	 * @Description: TODO
+	 * @param @param page
+	 * @param @param stage
+	 * @param @param catId
+	 * @param @return    
+	 * @return LuxtonResult  
+	 * 根据类目查商品列表 
+	 */ 
 	@RequestMapping("/searchByCatId/{page}")
 	@ResponseBody
 	public LuxtonResult getItemList(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
