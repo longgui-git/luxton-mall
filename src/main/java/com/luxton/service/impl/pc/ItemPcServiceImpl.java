@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.luxton.mapper.LuxItemMapper;
@@ -23,6 +25,7 @@ import com.luxton.pojo.LuxPropertyExample;
 import com.luxton.pojo.LuxPropertyValue;
 import com.luxton.pojo.LuxSupplier;
 import com.luxton.pojo.common.DataWithPageResults;
+import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;
 import com.luxton.service.pc.ItemPcService;
 import com.luxton.utils.LuxtonResult;
@@ -50,7 +53,14 @@ public class ItemPcServiceImpl implements ItemPcService {
 		Map<String, Object> map = new HashMap<>();
 		
 		LuxItem item = itemMapper.selectByPrimaryKey(itemId);
-		map.put("item", item);
+		ItemWithPicList itemPic = new ItemWithPicList();
+		BeanUtils.copyProperties(item, itemPic);
+		
+		if(item.getPicDetailed() != null) {
+			itemPic.setPicList(JSON.parseArray(item.getPicDetailed(), String.class));
+		}
+		
+		map.put("item", itemPic);
 		
 		LuxSupplier supplier = supplierMapper.selectByPrimaryKey(item.getSupplierId());
 		map.put("supplier", supplier);

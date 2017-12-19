@@ -39,8 +39,6 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public LuxtonResult insertItem(LuxItem item) {
-
-		
 		
 		if(item.getItemId() == null) {
 			itemMapper.insertSelective(item);
@@ -129,7 +127,7 @@ public class ItemServiceImpl implements ItemService {
 				
 				LuxItemProperty ip = new LuxItemProperty();
 				ip.setIsSku(pv.getProperty().getIsSale());
-				ip.setIpropertyId(pv.getProperty().getPropertyId());
+				ip.setPropertyId(pv.getProperty().getPropertyId());
 				ip.setItemId(itemId);
 				ip.setPropertyValueId(value.getPropertyValueId());
 				

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.mock.MockArray;
 import com.alibaba.fastjson.JSON;
 import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;
@@ -78,9 +79,14 @@ public class ItemController {
 	@ResponseBody
 	public LuxtonResult insertItemProperty(@RequestBody List<PropertyWithValue> list, @PathVariable Integer itemId) {
 		
-		LuxtonResult result = itemService.insertItemProperty(list, itemId);
+		try {
+			LuxtonResult result = itemService.insertItemProperty(list, itemId);
+		} catch (Exception e) {
+			System.out.println(ExceptionUtil.getStackTrace(e));
+		}
 		
-		return result;
+		
+		return LuxtonResult.ok();
 	}
 	
 	
