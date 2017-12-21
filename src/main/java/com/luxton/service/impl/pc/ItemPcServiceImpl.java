@@ -74,7 +74,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 			PropertyWithValue pv = new PropertyWithValue();
 			pv.setProperty(property);
 			
-			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId());
+			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId(),itemId);
 			pv.setValues(valueList);
 			
 			list.add(pv);
@@ -98,6 +98,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 		PageHelper.startPage(page, stage);
 		
 		LuxItemExample example = new LuxItemExample();
+//		example.setOrderByClause("");
 		if(catId != null) {
 			example.createCriteria().andCatIdEqualTo(catId);
 		}

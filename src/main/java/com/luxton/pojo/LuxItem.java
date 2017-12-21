@@ -1,6 +1,7 @@
 package com.luxton.pojo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class LuxItem {
     private Integer itemId;
@@ -20,6 +21,8 @@ public class LuxItem {
     private String picUrl;
 
     private String picDetailed;
+
+    private Date createTime;
 
     public Integer getItemId() {
         return itemId;
@@ -93,14 +96,11 @@ public class LuxItem {
         this.picDetailed = picDetailed == null ? null : picDetailed.trim();
     }
 
-	@Override
-	public String toString() {
-		return "LuxItem [itemId=" + itemId + ", title=" + title + ", sellPoint=" + sellPoint + ", supplierId="
-				+ supplierId + ", catId=" + catId + ", price=" + price + ", status=" + status + ", picUrl=" + picUrl
-				+ ", picDetailed=" + picDetailed + "]";
-	}
-    
-    
-    
-    
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

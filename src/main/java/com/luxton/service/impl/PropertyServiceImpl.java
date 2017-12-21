@@ -100,7 +100,10 @@ public class PropertyServiceImpl implements PropertyService {
 			PropertyWithValue pv = new PropertyWithValue();
 			pv.setProperty(property);
 			
-			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId());
+			LuxPropertyValueExample exampleV = new LuxPropertyValueExample();
+			exampleV.createCriteria().andPropertyIdEqualTo(property.getPropertyId());
+			List<LuxPropertyValue> valueList = valueMapper.selectByExample(exampleV);
+			
 			pv.setValues(valueList);
 			
 			list.add(pv);
@@ -108,7 +111,7 @@ public class PropertyServiceImpl implements PropertyService {
 		}
 		
 		
-		return null;
+		return LuxtonResult.ok(list);
 	}
 	
 	

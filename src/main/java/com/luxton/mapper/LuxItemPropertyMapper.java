@@ -31,6 +31,6 @@ public interface LuxItemPropertyMapper {
     int updateByPrimaryKey(LuxItemProperty record);
     
     
-    List<LuxPropertyValue> getItemPropertyValue(Integer propertyId);
+    List<LuxPropertyValue> getItemPropertyValue(@Param("propertyId") Integer propertyId,@Param("itemId") Integer itemId);
     
 }

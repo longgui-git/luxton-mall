@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.druid.mock.MockArray;
 import com.alibaba.fastjson.JSON;
 import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;

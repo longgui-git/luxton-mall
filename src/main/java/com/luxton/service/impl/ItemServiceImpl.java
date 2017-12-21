@@ -1,13 +1,16 @@
 package com.luxton.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.luxton.mapper.LuxItemMapper;
 import com.luxton.mapper.LuxItemPropertyMapper;
 import com.luxton.mapper.LuxPropertyMapper;
@@ -19,6 +22,7 @@ import com.luxton.pojo.LuxProperty;
 import com.luxton.pojo.LuxPropertyExample;
 import com.luxton.pojo.LuxPropertyValue;
 import com.luxton.pojo.LuxSupplier;
+import com.luxton.pojo.common.ItemWithPicList;
 import com.luxton.pojo.common.PropertyWithValue;
 import com.luxton.service.ItemService;
 import com.luxton.utils.LuxtonResult;
@@ -41,6 +45,7 @@ public class ItemServiceImpl implements ItemService {
 	public LuxtonResult insertItem(LuxItem item) {
 		
 		if(item.getItemId() == null) {
+			item.setCreateTime(new Date());
 			itemMapper.insertSelective(item);
 		}else {
 			itemMapper.updateByPrimaryKeySelective(item);
@@ -55,7 +60,14 @@ public class ItemServiceImpl implements ItemService {
 		Map<String, Object> map = new HashMap<>();
 		
 		LuxItem item = itemMapper.selectByPrimaryKey(itemId);
-		map.put("item", item);
+		ItemWithPicList itemPic = new ItemWithPicList();
+		BeanUtils.copyProperties(item, itemPic);
+		
+		if(item.getPicDetailed() != null) {
+			itemPic.setPicList(JSON.parseArray(item.getPicDetailed(), String.class));
+		}
+		
+		map.put("item", itemPic);
 		
 		LuxSupplier supplier = supplierMapper.selectByPrimaryKey(item.getSupplierId());
 		map.put("supplier", supplier);
@@ -69,7 +81,7 @@ public class ItemServiceImpl implements ItemService {
 			PropertyWithValue pv = new PropertyWithValue();
 			pv.setProperty(property);
 			
-			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId());
+			List<LuxPropertyValue> valueList = ipropertyMapper.getItemPropertyValue(property.getPropertyId(),itemId);
 			pv.setValues(valueList);
 			
 			list.add(pv);

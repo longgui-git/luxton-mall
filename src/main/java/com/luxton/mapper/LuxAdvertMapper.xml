@@ -91,7 +91,7 @@
   <select id="getAdvertListByType" resultType="com.luxton.pojo.common.AdvertWithItem"  >
     SELECT la.advert_id advertId ,la.item_id itemId ,la.item_recommend itemRecommend ,la.sort_num sortNum
 		,li.title ,li.sell_point sellPoint ,li.price ,li.pic_url picUrl ,lat.type_title typeTitle
-		,lai.type_id typeId
+		,la.type_id typeId
     FROM lux_advert la
     LEFT JOIN lux_item li
     ON la.item_id = li.item_id

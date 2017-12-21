@@ -88,14 +88,14 @@
   
   
   
-  <select id="getItemPropertyValue" resultType="com.luxton.pojo.LuxPropertyValue" parameterType="java.lang.Integer" >
+  <select id="getItemPropertyValue" resultType="com.luxton.pojo.LuxPropertyValue" >
     SELECT lip.property_value_id propertyValueId ,lpv.value_title valueTitle
 	FROM lux_item_property lip
 	
 	LEFT JOIN lux_property_value lpv
 	ON lip.property_value_id = lpv.property_value_id 
 	
-	WHERE lip.property_id = #{propertyId,jdbcType=INTEGER}
+	WHERE lip.property_id = #{propertyId,jdbcType=INTEGER} AND lip.item_id = #{itemId,jdbcType=INTEGER}
 
   </select>
   

@@ -27,7 +27,7 @@ public class ItemSkuServiceImpl implements ItemSkuService {
 			}
 		}
 		
-		return null;
+		return LuxtonResult.ok();
 	}
 
 	@Override
