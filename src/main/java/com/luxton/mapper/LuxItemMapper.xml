@@ -107,7 +107,7 @@
     
   </update>
   
-  <select id="getItemBySearchId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getItemBySearchId" resultMap="BaseResultMap" >
     SELECT item.item_id, item.title, item.sell_point, item.price, item.pic_url
 	FROM lux_property lp
 	LEFT JOIN lux_item_property ip
@@ -117,6 +117,11 @@
 	ON item.item_id = ip.item_id
 	
 	WHERE property_value_id =  #{propertyValueId,jdbcType=INTEGER} AND lp.is_search IS TRUE
+	
+	<if test="orderType != null and order != null" >
+        ORDER BY ${orderType} ${order}
+    </if>
+	 
   </select>
   
   

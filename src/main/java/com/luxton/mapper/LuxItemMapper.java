@@ -31,7 +31,7 @@ public interface LuxItemMapper {
     
     Boolean updateItemStatus(@Param("list") List<Integer> list, @Param("status") Boolean status);
     
-    List<LuxItem> getItemBySearchId(Integer propertyValueId);
+    List<LuxItem> getItemBySearchId(@Param("propertyValueId") Integer propertyValueId,@Param("orderType") String orderType ,@Param("order") String order);
     
     
 }

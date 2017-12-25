@@ -92,13 +92,16 @@ public class ItemPcServiceImpl implements ItemPcService {
 	
 	
 	@Override
-	public LuxtonResult getItemListByCatId(Integer catId, Integer page, Integer stage) {
+	public LuxtonResult getItemListByCatId(Integer catId, Integer page, Integer stage,String orderType ,String order) {
 
+		//价格,时间
+		
 		
 		PageHelper.startPage(page, stage);
 		
 		LuxItemExample example = new LuxItemExample();
-//		example.setOrderByClause("");
+		example.setOrderByClause(orderType+" "+order);
+		
 		if(catId != null) {
 			example.createCriteria().andCatIdEqualTo(catId);
 		}
@@ -119,12 +122,12 @@ public class ItemPcServiceImpl implements ItemPcService {
 
 
 	@Override
-	public LuxtonResult getItemListBySearchId(Integer propertyValueId, Integer page, Integer stage) {
+	public LuxtonResult getItemListBySearchId(Integer propertyValueId, Integer page, Integer stage,String orderType ,String order) {
 
 		PageHelper.startPage(page, stage);
 		
 		
-		List<LuxItem> list = itemMapper.getItemBySearchId(propertyValueId);
+		List<LuxItem> list = itemMapper.getItemBySearchId(propertyValueId,orderType,order);
 		
 		DataWithPageResults data = new DataWithPageResults();
 		
@@ -142,11 +145,12 @@ public class ItemPcServiceImpl implements ItemPcService {
 
 
 	@Override
-	public LuxtonResult getItemListBySupplierId(Integer supplierId, Integer page, Integer stage) {
+	public LuxtonResult getItemListBySupplierId(Integer supplierId, Integer page, Integer stage,String orderType ,String order) {
 
 		PageHelper.startPage(page, stage);
 		
 		LuxItemExample example = new LuxItemExample();
+		example.setOrderByClause(orderType+" "+order);
 		if(supplierId != null) {
 			example.createCriteria().andSupplierIdEqualTo(supplierId);
 		}
