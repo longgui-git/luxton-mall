@@ -67,24 +67,28 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult createAdmin(HttpServletRequest req,String username, String password) {
 
-		String adminRole = "admin";
-//		String adminRole = (String) req.getSession().getAttribute("adminRole");
-		if(adminRole.equals("admin")){
-			
-			LuxAdmin adminUser = new LuxAdmin();
-			adminUser.setCreateTime(new Date());
-			adminUser.setIdentity("user");
-			adminUser.setUsername(username);
-			
-			//密码加密
-			MD5 md5 = new MD5();
-			password = md5.getMD5ofStr(md5.getMD5ofStr(password));
-			adminUser.setPassword(password);
-			
-			adminMapper.insertSelective(adminUser);
-		}else{
-			return LuxtonResult.build(551, "权限不允许");
+		try {
+			String adminRole = "admin";
+			if(adminRole.equals("admin")){
+				
+				LuxAdmin adminUser = new LuxAdmin();
+				adminUser.setCreateTime(new Date());
+				adminUser.setIdentity("user");
+				adminUser.setUsername(username);
+				
+				//密码加密
+				MD5 md5 = new MD5();
+				password = md5.getMD5ofStr(md5.getMD5ofStr(password));
+				adminUser.setPassword(password);
+				
+				adminMapper.insertSelective(adminUser);
+			}else{
+				return LuxtonResult.build(551, "权限不允许");
+			}
+		} catch (Exception e) {
+			return LuxtonResult.build(549, "参数错误");
 		}
+		
 		
 		return LuxtonResult.ok();
 	}
@@ -97,6 +101,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public LuxtonResult getAdminList(HttpServletRequest req) {
 		
+		//取出身份监测是否是最高管理员
 		String adminRole = "admin";
 				//(String) req.getSession().getAttribute("adminRole");
 		if(adminRole.equals("admin")){

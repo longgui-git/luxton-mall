@@ -45,7 +45,6 @@ public class AdvertServiceImpl implements AdvertService {
 		}else{
 			list = advertMapper.getAdvertListByType(typeId);
 		}
-				
 		
 		return LuxtonResult.ok(list);
 	}

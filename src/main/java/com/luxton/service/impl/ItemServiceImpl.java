@@ -72,6 +72,7 @@ public class ItemServiceImpl implements ItemService {
 		LuxSupplier supplier = supplierMapper.selectByPrimaryKey(item.getSupplierId());
 		map.put("supplier", supplier);
 		
+		//商品的属性列表
 		LuxPropertyExample example = new LuxPropertyExample();
 		example.createCriteria().andCatIdEqualTo(item.getCatId());
 		
@@ -93,6 +94,15 @@ public class ItemServiceImpl implements ItemService {
 		return LuxtonResult.ok(map);
 	}
 
+	
+	/** 
+	 * @Title: getItemList 
+	 * @Description: TODO
+	 * @param @param status
+	 * @param @return    
+	 * @return LuxtonResult   
+	 * 查询上下架的商品
+	 */ 
 	
 	@Override
 	public LuxtonResult getItemList(Boolean status) {
