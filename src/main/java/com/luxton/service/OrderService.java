@@ -8,6 +8,6 @@ public interface OrderService {
 	
 	public LuxtonResult getOrderByOrderId(String orderId);
 	
-	public LuxtonResult updateOrderStatus(String orderId,Boolean status);
+	public LuxtonResult updateOrderStatus(String orderId,Integer status);
 	
 }

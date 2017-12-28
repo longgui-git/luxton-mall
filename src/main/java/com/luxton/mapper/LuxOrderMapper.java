@@ -35,7 +35,7 @@ public interface LuxOrderMapper {
     
     List<OrderWithItemList> getOrderListByStatus(Integer status);
     
-    Boolean updateOrderStatus(@Param("orderId") String orderId, @Param("status") Boolean status);
+    Boolean updateOrderStatus(@Param("orderId") String orderId, @Param("status") Integer status);
     
     
     

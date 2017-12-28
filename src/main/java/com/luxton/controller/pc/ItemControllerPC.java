@@ -40,7 +40,8 @@ public class ItemControllerPC {
 	@RequestMapping("/searchByCatId/{page}")
 	@ResponseBody
 	public LuxtonResult getItemList(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
-			Integer catId  ,String orderType ,String order) {
+			Integer catId  ,@RequestParam(defaultValue="create_time") String orderType ,
+			@RequestParam(defaultValue="DESC") String order) {
 		
 		LuxtonResult result = itemService.getItemListByCatId(catId, page, stage, orderType ,order);
 		
@@ -50,7 +51,8 @@ public class ItemControllerPC {
 	@RequestMapping("/searchBySupplierId/{page}")
 	@ResponseBody
 	public LuxtonResult getItemListBySupplierId(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
-			Integer supplierId ,String orderType ,String order) {
+			Integer supplierId ,@RequestParam(defaultValue="create_time") String orderType ,
+			@RequestParam(defaultValue="DESC") String order) {
 		
 		LuxtonResult result = itemService.getItemListBySupplierId(supplierId, page, stage, orderType ,order);
 		
@@ -60,7 +62,8 @@ public class ItemControllerPC {
 	@RequestMapping("/searchBySearchId/{page}")
 	@ResponseBody
 	public LuxtonResult getItemListBySearchId(@PathVariable Integer page,@RequestParam(defaultValue="10") Integer stage,
-			Integer propertyValueId ,String orderType ,String order) {
+			Integer propertyValueId ,@RequestParam(defaultValue="create_time") String orderType ,
+			@RequestParam(defaultValue="DESC") String order) {
 		
 		LuxtonResult result = itemService.getItemListBySearchId(propertyValueId, page, stage, orderType ,order);
 		

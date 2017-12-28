@@ -39,7 +39,7 @@ public class OrderController {
 	
 	@RequestMapping("/update/{orderId}/{status}")
 	@ResponseBody
-	public LuxtonResult updateOrderStatus(@PathVariable String orderId ,@PathVariable Boolean status) {
+	public LuxtonResult updateOrderStatus(@PathVariable String orderId ,@PathVariable Integer status) {
 		
 		LuxtonResult result = orderService.updateOrderStatus(orderId, status);
 		return result;

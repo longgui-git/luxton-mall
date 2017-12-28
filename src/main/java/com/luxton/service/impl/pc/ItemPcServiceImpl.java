@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,7 +101,11 @@ public class ItemPcServiceImpl implements ItemPcService {
 		PageHelper.startPage(page, stage);
 		
 		LuxItemExample example = new LuxItemExample();
-		example.setOrderByClause(orderType+" "+order);
+		if(!StringUtils.isEmpty(orderType)&&!StringUtils.isEmpty(order)){
+//			System.out.println("---");
+			example.setOrderByClause(orderType+" "+order);
+		}
+		
 		
 		if(catId != null) {
 			example.createCriteria().andCatIdEqualTo(catId);
@@ -126,7 +131,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 
 		PageHelper.startPage(page, stage);
 		
-		
+//		System.out.println("--"+propertyValueId);
 		List<LuxItem> list = itemMapper.getItemBySearchId(propertyValueId,orderType,order);
 		
 		DataWithPageResults data = new DataWithPageResults();
@@ -150,7 +155,10 @@ public class ItemPcServiceImpl implements ItemPcService {
 		PageHelper.startPage(page, stage);
 		
 		LuxItemExample example = new LuxItemExample();
-		example.setOrderByClause(orderType+" "+order);
+		if(!StringUtils.isEmpty(orderType)&&!StringUtils.isEmpty(order)){
+			example.setOrderByClause(orderType+" "+order);
+		}
+		
 		if(supplierId != null) {
 			example.createCriteria().andSupplierIdEqualTo(supplierId);
 		}

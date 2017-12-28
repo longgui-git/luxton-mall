@@ -119,7 +119,7 @@
 	WHERE property_value_id =  #{propertyValueId,jdbcType=INTEGER} AND lp.is_search IS TRUE
 	
 	<if test="orderType != null and order != null" >
-        ORDER BY ${orderType} ${order}
+        ORDER BY item.${orderType} ${order}
     </if>
 	 
   </select>

@@ -118,7 +118,7 @@
     LEFT JOIN lux_advert_type lat
     ON la.type_id = lat.type_id
     
-    ORDER BY create_time DESC
+    ORDER BY la.create_time DESC
   </select>
   
   
