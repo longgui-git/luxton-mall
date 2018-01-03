@@ -30,4 +30,8 @@ public interface LuxItemSkuMapper {
     
     
     LuxItemSku getSkuInfo(@Param("itemId") Integer itemId ,@Param("properties") String properties);
+    
+    
+    
+    
 }

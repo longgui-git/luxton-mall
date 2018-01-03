@@ -38,6 +38,8 @@ public interface LuxOrderMapper {
     Boolean updateOrderStatus(@Param("orderId") String orderId, @Param("status") Integer status);
     
     
+    List<OrderWithItemList> getOrderListByUserAndStatus(@Param("userId") Long userId,@Param("status") Integer status);
+    
     
     
 }

@@ -1,11 +1,17 @@
 package com.luxton.service.impl.pc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.luxton.mapper.LuxOrderItemMapper;
 import com.luxton.mapper.LuxOrderMapper;
 import com.luxton.pojo.LuxOrderItem;
+import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.pojo.common.OrderWithItemList;
 import com.luxton.service.pc.OrderPcService;
 import com.luxton.utils.IDUtils;
@@ -57,4 +63,47 @@ public class OrderPcServiceImpl implements OrderPcService {
 	    return orderId;
 	}
 
+
+	
+	@Override
+	public LuxtonResult getOrderList(Long userId,Integer status,Integer page,Integer stage) {
+		
+		PageHelper.startPage(page,stage);
+		
+		List<OrderWithItemList> list = null;
+		if(status == null){
+			list = orderMapper.getOrderList();
+		}else{
+			list = orderMapper.getOrderListByStatus(status);
+		}
+		
+		
+				
+		List<OrderWithItemList> listResult = new ArrayList<>();
+		
+		for(OrderWithItemList order : list){
+			
+			List<LuxOrderItem> items = orderItemMapper.getByOrderId(order.getOrderId());
+			order.setItems(items);
+			
+			listResult.add(order);
+		}
+		
+		DataWithPageResults data = new DataWithPageResults();
+		data.setRows(listResult);
+		
+		PageInfo<OrderWithItemList> info = new PageInfo<>(list);
+		data.setTotal(info.getTotal());
+		
+		return LuxtonResult.ok(data);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 }

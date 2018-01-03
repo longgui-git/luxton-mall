@@ -7,4 +7,7 @@ public interface OrderPcService {
 
 	public LuxtonResult insertOrder(OrderWithItemList order);
 	
+	public LuxtonResult getOrderList(Long userId,Integer status ,Integer page,Integer stage);
+	
+	
 }
