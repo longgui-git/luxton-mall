@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.luxton.mapper.LuxItemSkuMapper;
 import com.luxton.mapper.LuxOrderItemMapper;
 import com.luxton.mapper.LuxOrderMapper;
 import com.luxton.pojo.LuxOrderItem;
@@ -25,6 +26,9 @@ public class OrderPcServiceImpl implements OrderPcService {
 	@Autowired
 	private LuxOrderItemMapper orderItemMapper;
 	
+	@Autowired
+	private LuxItemSkuMapper skuMapper;
+	
 	@Override
 	public LuxtonResult insertOrder(OrderWithItemList order) {
 
@@ -36,6 +40,12 @@ public class OrderPcServiceImpl implements OrderPcService {
 		
 		for(LuxOrderItem orderItem : order.getItems()){
 			
+			
+			
+			Integer b = skuMapper.updateSkuQuantity(orderItem.getItemId(), orderItem.getSkuProperties());
+			if(b>0) {
+				
+			}
 			order.setOrderId(orderId);
 			orderItemMapper.insertSelective(orderItem);
 		}

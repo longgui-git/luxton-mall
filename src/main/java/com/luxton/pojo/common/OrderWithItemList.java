@@ -7,7 +7,6 @@ import com.luxton.pojo.LuxOrderItem;
 
 public class OrderWithItemList extends LuxOrder {
 
-	
 	private List<LuxOrderItem> items;
 
 	public List<LuxOrderItem> getItems() {

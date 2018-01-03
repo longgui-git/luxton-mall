@@ -18,6 +18,8 @@ public class LuxOrderItem {
     private String itemTitle;
 
     private String itemType;
+    
+    private String skuProperties;
 
     public Integer getOrderItemId() {
         return orderItemId;
@@ -82,4 +84,13 @@ public class LuxOrderItem {
     public void setItemType(String itemType) {
         this.itemType = itemType == null ? null : itemType.trim();
     }
+
+	public String getSkuProperties() {
+		return skuProperties;
+	}
+
+	public void setSkuProperties(String skuProperties) {
+		this.skuProperties = skuProperties;
+	}
+    
 }

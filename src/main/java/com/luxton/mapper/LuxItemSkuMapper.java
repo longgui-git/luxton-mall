@@ -31,7 +31,7 @@ public interface LuxItemSkuMapper {
     
     LuxItemSku getSkuInfo(@Param("itemId") Integer itemId ,@Param("properties") String properties);
     
-    
+    Integer updateSkuQuantity(@Param("itemId") Integer itemId ,@Param("properties") String properties);
     
     
 }
