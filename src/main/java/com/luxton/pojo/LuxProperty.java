@@ -15,6 +15,8 @@ public class LuxProperty {
 
     private Boolean isSearch;
 
+    private Boolean isSize;
+
     private Date createTime;
 
     public Integer getPropertyId() {
@@ -63,6 +65,14 @@ public class LuxProperty {
 
     public void setIsSearch(Boolean isSearch) {
         this.isSearch = isSearch;
+    }
+
+    public Boolean getIsSize() {
+        return isSize;
+    }
+
+    public void setIsSize(Boolean isSize) {
+        this.isSize = isSize;
     }
 
     public Date getCreateTime() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -40,11 +41,10 @@ public class OrderPcServiceImpl implements OrderPcService {
 		
 		for(LuxOrderItem orderItem : order.getItems()){
 			
-			
-			
 			Integer b = skuMapper.updateSkuQuantity(orderItem.getItemId(), orderItem.getSkuProperties());
-			if(b>0) {
-				
+			if(b==0) {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return LuxtonResult.build(555, "订单中的商品已售罄");
 			}
 			order.setOrderId(orderId);
 			orderItemMapper.insertSelective(orderItem);

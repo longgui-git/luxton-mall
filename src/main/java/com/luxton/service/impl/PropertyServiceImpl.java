@@ -32,6 +32,10 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public LuxtonResult insertProperty(LuxProperty property) {
 
+		if(property.getIsSize() || property.getIsColor()){
+			property.setIsSale(true);
+		}
+		
 		if(property.getPropertyId() == null){
 			property.setCreateTime(new Date());
 			propertyMapper.insertSelective(property);

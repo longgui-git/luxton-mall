@@ -1,5 +1,7 @@
 package com.luxton.controller.pc;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +32,14 @@ public class OrderControllerPC {
 	@RequestMapping("/getOrderList")
 	@ResponseBody
 	private LuxtonResult getOrderList(Integer status,@RequestParam(defaultValue="1") Integer page,
-			@RequestParam(defaultValue="10") Integer stage){
+			@RequestParam(defaultValue="10") Integer stage ,HttpServletRequest req){
 		
+		String uid = (String) req.getSession().getAttribute("userId");
 		Long userId = 1L;
+		if(uid != null){
+			userId = Long.parseLong(uid);
+		}
+		
 		LuxtonResult result = orderService.getOrderList(userId,status,page,stage);
 		return result;
 	}

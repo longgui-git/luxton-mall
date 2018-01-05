@@ -475,6 +475,66 @@ public class LuxPropertyExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsSizeIsNull() {
+            addCriterion("is_size is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeIsNotNull() {
+            addCriterion("is_size is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeEqualTo(Boolean value) {
+            addCriterion("is_size =", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeNotEqualTo(Boolean value) {
+            addCriterion("is_size <>", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeGreaterThan(Boolean value) {
+            addCriterion("is_size >", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_size >=", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeLessThan(Boolean value) {
+            addCriterion("is_size <", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_size <=", value, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeIn(List<Boolean> values) {
+            addCriterion("is_size in", values, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeNotIn(List<Boolean> values) {
+            addCriterion("is_size not in", values, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_size between", value1, value2, "isSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSizeNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_size not between", value1, value2, "isSize");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
