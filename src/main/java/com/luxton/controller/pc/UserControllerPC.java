@@ -39,4 +39,23 @@ public class UserControllerPC {
 		return result;
 	}
 	
+	
+	@RequestMapping("/getUserInfo")
+	@ResponseBody
+	public LuxtonResult getUserInfo(HttpServletRequest req){
+		
+		LuxtonResult result = userService.getUserInfo(req);
+		
+		return result;
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public LuxtonResult logout(HttpServletRequest req){
+		
+		req.getSession().removeAttribute("userId");
+		
+		return null;
+	}
+	
 }

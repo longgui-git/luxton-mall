@@ -91,13 +91,6 @@
   
   
   
-  <select id="getSkuInfo" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from lux_item_sku
-    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR}
-  </select>
-  
   
   <select id="getSkuInfo" resultMap="BaseResultMap" >
     select 
@@ -106,7 +99,7 @@
     WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR}
   </select>
   
-   <update id="updateSkuQuantity"  >
+  <update id="updateSkuQuantity"  >
    
     update lux_item_sku
     <set>

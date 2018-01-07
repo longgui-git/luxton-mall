@@ -11,4 +11,6 @@ public interface UserLoginService {
 	
 	public LuxtonResult getUserLogin(HttpServletRequest req, String username,String password);
 	
+	public LuxtonResult getUserInfo(HttpServletRequest req);
+	
 }

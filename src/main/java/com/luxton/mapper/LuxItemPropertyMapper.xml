@@ -89,7 +89,7 @@
   
   
   <select id="getItemPropertyValue" resultType="com.luxton.pojo.LuxPropertyValue" >
-    SELECT lip.property_value_id propertyValueId ,lpv.value_title valueTitle
+    SELECT lip.property_value_id propertyValueId ,lpv.value_title valueTitle ,lpv.remark
 	FROM lux_item_property lip
 	
 	LEFT JOIN lux_property_value lpv

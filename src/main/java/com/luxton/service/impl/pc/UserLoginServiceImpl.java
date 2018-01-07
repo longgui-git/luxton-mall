@@ -70,6 +70,20 @@ public class UserLoginServiceImpl implements UserLoginService {
 		
 		return LuxtonResult.build(572, "用户名或密码错误");
 	}
+
+	
+	@Override
+	public LuxtonResult getUserInfo(HttpServletRequest req) {
+
+//		String uId = (String) req.getSession().getAttribute("userId");
+		
+		String uId = "1";
+		LuxUser user = userMapper.selectByPrimaryKey(Long.parseLong(uId));
+		
+		user.setUsername(null);
+		user.setPassword(null);
+		return LuxtonResult.ok(user);
+	}
 	
 	
 	
