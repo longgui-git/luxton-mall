@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,7 +56,14 @@ public class UserControllerPC {
 		
 		req.getSession().removeAttribute("userId");
 		
-		return null;
+		return LuxtonResult.ok();
+	}
+	
+	@RequestMapping("/relogin/{status}")
+	@ResponseBody
+	public LuxtonResult loginFalseStatus(@PathVariable Integer status){
+		
+		return LuxtonResult.build(status, "验证失败，请重新登录");
 	}
 	
 }

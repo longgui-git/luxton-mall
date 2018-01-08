@@ -27,12 +27,13 @@ public class UserCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object arg2) throws Exception {
 		
-//		String userId = (String)request.getSession().getAttribute("userId");
-//		
-//		if(userId != null){
-//			return true;
-//		}
+		String userId = (String)request.getSession().getAttribute("userId");
 		
+		System.out.println("-----------"+userId);
+		
+		if(StringUtils.isBlank(userId)){
+			res.sendRedirect("http://luxma.helpyoulove.com/user/relogin/432");
+		}
 		
 		return true;
 	}

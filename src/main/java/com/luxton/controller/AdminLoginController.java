@@ -89,6 +89,12 @@ public class AdminLoginController {
 	}
 	
 	
-	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public LuxtonResult adminLogout(HttpServletRequest req){
+		
+		req.getSession().removeAttribute("adminRole");
+		return LuxtonResult.ok();
+	}
 	
 }

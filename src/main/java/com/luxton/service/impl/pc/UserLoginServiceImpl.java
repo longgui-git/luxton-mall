@@ -63,6 +63,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 		
 		if(list!=null && list.size()>0){
 			LuxUser user = list.get(0);
+			System.out.println("---++--------------"+user.getUserId());
 			//验证正确
 			req.getSession().setAttribute("userId", user.getUserId());
 			return LuxtonResult.ok();
@@ -75,9 +76,9 @@ public class UserLoginServiceImpl implements UserLoginService {
 	@Override
 	public LuxtonResult getUserInfo(HttpServletRequest req) {
 
-//		String uId = (String) req.getSession().getAttribute("userId");
+		String uId = (String) req.getSession().getAttribute("userId");
 		
-		String uId = "1";
+//		String uId = "1";
 		LuxUser user = userMapper.selectByPrimaryKey(Long.parseLong(uId));
 		
 		user.setUsername(null);
