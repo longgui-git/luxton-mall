@@ -22,7 +22,14 @@ public class OrderControllerPC {
 	
 	@RequestMapping("/insert")
 	@ResponseBody
-	private LuxtonResult insertOrder(@RequestBody OrderWithItemList order){
+	private LuxtonResult insertOrder(HttpServletRequest req ,@RequestBody OrderWithItemList order){
+		
+		String uid = (String) req.getSession().getAttribute("userId");
+		Long userId = 1L;
+		if(uid != null){
+			userId = Long.parseLong(uid);
+		}
+		order.setUserId(userId);
 		
 		LuxtonResult result = orderService.insertOrder(order);
 		return result;
@@ -35,11 +42,11 @@ public class OrderControllerPC {
 			@RequestParam(defaultValue="10") Integer stage ,HttpServletRequest req){
 		
 		String uid = (String) req.getSession().getAttribute("userId");
-		Long userId = 1L;
+		Long userId = 3L;
 		if(uid != null){
 			userId = Long.parseLong(uid);
 		}
-		
+		System.out.println(userId);
 		LuxtonResult result = orderService.getOrderList(userId,status,page,stage);
 		return result;
 	}

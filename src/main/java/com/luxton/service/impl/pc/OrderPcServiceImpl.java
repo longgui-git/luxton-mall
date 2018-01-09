@@ -16,6 +16,7 @@ import com.luxton.pojo.LuxOrderItem;
 import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.pojo.common.OrderWithItemList;
 import com.luxton.service.pc.OrderPcService;
+import com.luxton.utils.ExceptionUtil;
 import com.luxton.utils.IDUtils;
 import com.luxton.utils.LuxtonResult;
 @Service
@@ -33,21 +34,26 @@ public class OrderPcServiceImpl implements OrderPcService {
 	@Override
 	public LuxtonResult insertOrder(OrderWithItemList order) {
 
-		//生成订单id
-		String orderId = getOrderId();
-		order.setOrderId(orderId);
-		
-		orderMapper.insertSelective(order);
-		
-		for(LuxOrderItem orderItem : order.getItems()){
-			
-			Integer b = skuMapper.updateSkuQuantity(orderItem.getItemId(), orderItem.getSkuProperties());
-			if(b==0) {
-				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-				return LuxtonResult.build(555, "订单中的商品已售罄");
-			}
+		try {
+			//生成订单id
+			String orderId = getOrderId();
 			order.setOrderId(orderId);
-			orderItemMapper.insertSelective(orderItem);
+			
+			orderMapper.insertSelective(order);
+			
+			for(LuxOrderItem orderItem : order.getItems()){
+				
+				Integer b = skuMapper.updateSkuQuantity(orderItem.getItemId(), orderItem.getSkuProperties(),orderItem.getNum());
+				if(b==0) {
+					TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+					return LuxtonResult.build(581, "订单中的商品已售罄");
+				}
+				orderItem.setOrderId(orderId);
+				orderItemMapper.insertSelective(orderItem);
+			}
+		} catch (Exception e) {
+			System.out.println(ExceptionUtil.getStackTrace(e));
+			throw new RuntimeException();
 		}
 		
 		
@@ -82,13 +88,13 @@ public class OrderPcServiceImpl implements OrderPcService {
 		
 		List<OrderWithItemList> list = null;
 		if(status == null){
-			list = orderMapper.getOrderList();
+			list = orderMapper.getOrderListByUser(userId);
+//			System.out.println(list.get(0).getOrderId());
 		}else{
-			list = orderMapper.getOrderListByStatus(status);
+			list = orderMapper.getOrderListByUserAndStatus(userId, status);
 		}
+//		System.out.println(list.size()+"----");
 		
-		
-				
 		List<OrderWithItemList> listResult = new ArrayList<>();
 		
 		for(OrderWithItemList order : list){

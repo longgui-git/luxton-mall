@@ -99,17 +99,11 @@
     WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR}
   </select>
   
+  
   <update id="updateSkuQuantity"  >
-   
     update lux_item_sku
-    <set>
-    	<if test="quantity > 0">
-    	quantity = quantity-1,
-    	</if>
-    	quantity = quantity
-    </set>
-    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR}
-    
+    set quantity = quantity-#{num}
+    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR} AND quantity >#{num}
   </update>
   
   

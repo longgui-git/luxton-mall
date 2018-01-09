@@ -34,7 +34,13 @@ public class UserControllerPC {
 	@ResponseBody
 	public LuxtonResult getUserLogin(HttpServletRequest req,HttpServletResponse res,
 			@RequestBody LuxUser user){
+//		){
 		
+//		System.out.println("--"+req.getSession().getAttribute("userId"));
+		
+//		LuxUser user = new LuxUser();
+//		user.setUsername("1");
+//		user.setPassword("1");
 		LuxtonResult result = userService.getUserLogin(req, user.getUsername(), user.getPassword());
 		
 		return result;

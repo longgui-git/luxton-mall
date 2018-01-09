@@ -63,9 +63,14 @@ public class UserLoginServiceImpl implements UserLoginService {
 		
 		if(list!=null && list.size()>0){
 			LuxUser user = list.get(0);
-			System.out.println("---++--------------"+user.getUserId());
+//			System.out.println("---++--------------"+user.getUserId());
 			//验证正确
-			req.getSession().setAttribute("userId", user.getUserId());
+			req.getSession().setAttribute("userId", user.getUserId()+"");
+			req.getSession().setMaxInactiveInterval(720000);
+			
+//			String au = (String) req.getSession().getAttribute("userId");
+//			System.out.println(au);
+			
 			return LuxtonResult.ok();
 		}
 		

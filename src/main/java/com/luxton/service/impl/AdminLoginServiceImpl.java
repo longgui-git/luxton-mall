@@ -31,7 +31,6 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	public LuxtonResult getAdminLogin(HttpServletRequest req,String username, String password) {
 
 		
-		
 //		md5加密
 		MD5 md5 = new MD5();
 		try{

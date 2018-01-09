@@ -40,6 +40,6 @@ public interface LuxOrderMapper {
     
     List<OrderWithItemList> getOrderListByUserAndStatus(@Param("userId") Long userId,@Param("status") Integer status);
     
-    
+    List<OrderWithItemList> getOrderListByUser(@Param("userId") Long userId);
     
 }
