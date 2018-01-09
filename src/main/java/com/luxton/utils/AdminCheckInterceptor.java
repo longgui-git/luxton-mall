@@ -27,15 +27,14 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object arg2) throws Exception {
 		
+//		return true;
+		String adminRole = (String)request.getSession().getAttribute("adminRole");
+		
+		if(StringUtils.isBlank(adminRole)){
+			res.sendRedirect("http://luxma.helpyoulove.com/user/relogin/432");
+		}
+		
 		return true;
-//		String adminRole = (String)request.getSession().getAttribute("adminRole");
-//		
-//		if(adminRole != null){
-//			return true;
-//		}
-//		
-//		
-//		return false;
 	}
 
 }

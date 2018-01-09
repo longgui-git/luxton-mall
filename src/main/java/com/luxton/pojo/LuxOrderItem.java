@@ -20,6 +20,8 @@ public class LuxOrderItem {
     private String itemType;
     
     private String skuProperties;
+    
+    private String picUrl;
 
     public Integer getOrderItemId() {
         return orderItemId;
@@ -91,6 +93,14 @@ public class LuxOrderItem {
 
 	public void setSkuProperties(String skuProperties) {
 		this.skuProperties = skuProperties;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
     
 }

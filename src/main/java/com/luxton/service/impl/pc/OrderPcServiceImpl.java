@@ -1,6 +1,7 @@
 package com.luxton.service.impl.pc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class OrderPcServiceImpl implements OrderPcService {
 			//生成订单id
 			String orderId = getOrderId();
 			order.setOrderId(orderId);
+			order.setCreateTime(new Date());
 			
 			orderMapper.insertSelective(order);
 			

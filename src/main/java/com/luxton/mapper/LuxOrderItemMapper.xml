@@ -91,11 +91,14 @@
   
   
   
-  <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from lux_order_item
-    where order_id = #{orderId,jdbcType=INTEGER}
+  <select id="getByOrderId" resultType="com.luxton.pojo.LuxOrderItem" parameterType="java.lang.String" >
+   SELECT oi.order_item_id orderItemId, oi.order_id orderId, oi.item_id itemId, oi.num, oi.price, oi.price_total priceTotal,
+     oi.item_title itemTitle, oi.item_type itemType, item.pic_url picUrl
+    FROM lux_order_item oi
+    LEFT JOIN lux_item  item
+    ON oi.item_id = item.item_id
+    
+    where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
   
   
