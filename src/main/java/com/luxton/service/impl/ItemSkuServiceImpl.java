@@ -42,9 +42,11 @@ public class ItemSkuServiceImpl implements ItemSkuService {
 	}
 
 	@Override
-	public LuxtonResult updateSkuValue(LuxItemSku sku) {
+	public LuxtonResult updateSkuValue(List<LuxItemSku> list) {
 
-		skuMapper.updateByPrimaryKeySelective(sku);
+		for(LuxItemSku sku : list){
+			skuMapper.updateByPrimaryKeySelective(sku);
+		}
 		
 		return LuxtonResult.ok();
 	}

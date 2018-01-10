@@ -40,9 +40,9 @@ public class ItemSkuController {
 	
 	@RequestMapping("/update")
 	@ResponseBody
-	public LuxtonResult updateSkuValue(@RequestBody LuxItemSku sku) {
+	public LuxtonResult updateSkuValue(@RequestBody List<LuxItemSku> list) {
 		
-		LuxtonResult result = skuService.updateSkuValue(sku);
+		LuxtonResult result = skuService.updateSkuValue(list);
 		return result;
 	}
 	
