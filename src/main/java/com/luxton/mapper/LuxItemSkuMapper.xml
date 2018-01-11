@@ -103,7 +103,7 @@
   <update id="updateSkuQuantity"  >
     update lux_item_sku
     set quantity = quantity-#{num}
-    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR} AND quantity >#{num}
+    WHERE item_id = #{itemId,jdbcType=INTEGER} AND properties = #{properties,jdbcType=VARCHAR} AND quantity >= #{num}
   </update>
   
   

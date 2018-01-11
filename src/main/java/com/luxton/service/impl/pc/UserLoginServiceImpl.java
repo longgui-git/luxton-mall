@@ -66,7 +66,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 //			System.out.println("---++--------------"+user.getUserId());
 			//验证正确
 			req.getSession().setAttribute("userId", user.getUserId()+"");
-			req.getSession().setMaxInactiveInterval(120);
+			req.getSession().setMaxInactiveInterval(3600);
 			
 //			String au = (String) req.getSession().getAttribute("userId");
 //			System.out.println(au);

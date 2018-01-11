@@ -101,8 +101,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	public LuxtonResult getAdminList(HttpServletRequest req) {
 		
 		//取出身份监测是否是最高管理员
-		String adminRole = "admin";
-				//(String) req.getSession().getAttribute("adminRole");
+		String adminRole = (String) req.getSession().getAttribute("adminRole");
+				
 		if(adminRole.equals("admin")){
 			
 			LuxAdminExample example = new LuxAdminExample();

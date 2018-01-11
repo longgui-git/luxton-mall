@@ -1,6 +1,7 @@
 package com.luxton.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class AdvertServiceImpl implements AdvertService {
 	
 	@Override
 	public LuxtonResult insertAdvert(LuxAdvert advert) {
+		
+		advert.setCreateTime(new Date());
 		
 		if(advert.getAdvertId() == null) {
 			advertMapper.insertSelective(advert);

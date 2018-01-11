@@ -38,7 +38,7 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:advisor advice-ref="aspectId" pointcut="execution(* com.moka.service..*.*(..))" />
+		<aop:advisor advice-ref="aspectId" pointcut="execution(* com.luxton.service..*.*(..))" />
 	</aop:config>
 
 
