@@ -78,17 +78,20 @@ public class ItemController {
 	@ResponseBody
 	public LuxtonResult insertItemProperty(@RequestBody List<PropertyWithValue> list, @PathVariable Integer itemId) {
 		
-		try {
-			LuxtonResult result = itemService.insertItemProperty(list, itemId);
-		} catch (Exception e) {
-			System.out.println(ExceptionUtil.getStackTrace(e));
-		}
+		LuxtonResult result = itemService.insertItemProperty(list, itemId);
 		
 		
-		return LuxtonResult.ok();
+		return result;
 	}
 	
 	
-	
+	@RequestMapping("/deleteItemInfo/{itemId}")
+	@ResponseBody
+	public LuxtonResult deleteItemInfo(@PathVariable Integer itemId) {
+		
+		LuxtonResult result = itemService.deleteItemInfo(itemId);
+		
+		return result;
+	}
 	
 }

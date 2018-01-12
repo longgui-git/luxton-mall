@@ -17,9 +17,19 @@ public interface ItemService {
 	
 	public LuxtonResult updateItemStatus(List<Integer> list ,Boolean status);
 	
+	/**
+	 * 这个是商品批量下架
+	 */
 	public LuxtonResult deleteItem(List<Integer> list);
 	
 	
 	public LuxtonResult insertItemProperty(List<PropertyWithValue> list ,Integer itemId);
+	
+	
+	/**
+	 * 商品删除
+	 */
+	public LuxtonResult deleteItemInfo(Integer itemId);
+	
 	
 }
