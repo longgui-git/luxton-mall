@@ -63,7 +63,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 		}
 		
 		
-		return LuxtonResult.ok("http://luximage.helpyoulove.com"+newName);
+		return LuxtonResult.ok("http://image.luxtonusa.com"+newName);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 				fos.close();
 				is.close();
 				
-				picList.add("http://luximage.helpyoulove.com"+newName);
+				picList.add("http://image.luxtonusa.com"+newName);
 				
 			} catch (IOException e) {
 				sb=sb.append(oldName+"  ");

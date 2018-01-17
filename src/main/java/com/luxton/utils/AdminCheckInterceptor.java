@@ -31,7 +31,7 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 		String adminRole = (String)request.getSession().getAttribute("adminRole");
 		
 		if(StringUtils.isBlank(adminRole)){
-			res.sendRedirect("http://luxma.helpyoulove.com/user/relogin/432");
+			res.sendRedirect("http://manager.luxtonusa.com/user/relogin/432");
 		}
 		
 		return true;

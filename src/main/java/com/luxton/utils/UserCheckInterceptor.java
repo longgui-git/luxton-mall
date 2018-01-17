@@ -29,10 +29,9 @@ public class UserCheckInterceptor implements HandlerInterceptor {
 		
 		String userId = (String)request.getSession().getAttribute("userId");
 		
-		System.out.println("-----------"+userId);
 		
 		if(StringUtils.isBlank(userId)){
-			res.sendRedirect("http://luxma.helpyoulove.com/user/relogin/432");
+			res.sendRedirect("http://www.luxtonusa.com/user/relogin/432");
 		}
 		
 		return true;
