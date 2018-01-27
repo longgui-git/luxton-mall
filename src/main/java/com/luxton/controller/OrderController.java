@@ -1,5 +1,7 @@
 package com.luxton.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,14 @@ public class OrderController {
 	public LuxtonResult updateOrderStatus(@PathVariable String orderId ,@PathVariable Integer status) {
 		
 		LuxtonResult result = orderService.updateOrderStatus(orderId, status);
+		return result;
+	}
+	
+	@RequestMapping("/exportOrder")
+	@ResponseBody
+	public LuxtonResult exportOrder(String orderId,HttpServletResponse res) {
+		
+		LuxtonResult result = orderService.exportOrder(orderId,res);
 		return result;
 	}
 	

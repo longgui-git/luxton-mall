@@ -1,8 +1,31 @@
 package com.luxton.service.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTShd;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STShd;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,6 +109,128 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.updateOrderStatus(orderId, status);
 		
 		return LuxtonResult.ok();
+	}
+
+	@Override
+	public LuxtonResult exportOrder(String orderId,HttpServletResponse res) {
+
+		
+		XWPFDocument document= new XWPFDocument();  
+		  
+        OutputStream out = null;
+  
+        LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
+		if(order == null){
+			return LuxtonResult.ok();
+		}
+		
+		List<LuxOrderItem> items = oitemMapper.getByOrderId(order.getOrderId());
+  
+  
+        //基本信息表格  
+        XWPFTable infoTable = document.createTable();  
+        //去表格边框  
+        infoTable.getCTTbl().getTblPr().unsetTblBorders();  
+
+  
+        //列宽自动分割  
+        CTTblWidth infoTableWidth = infoTable.getCTTbl().addNewTblPr().addNewTblW();  
+        infoTableWidth.setType(STTblWidth.DXA);  
+        infoTableWidth.setW(BigInteger.valueOf(9072));  
+  
+  
+        //表格第一行  
+        XWPFTableRow infoTableRowOne = infoTable.getRow(0);  
+        infoTableRowOne.getCell(0).setText("Order Number");  
+        infoTableRowOne.addNewTableCell().setText(""+order.getOrderId());  
+  
+        //表格第二行  
+        XWPFTableRow infoTableRowTwo = infoTable.createRow();  
+        infoTableRowTwo.getCell(0).setText("Order Date");  
+        infoTableRowTwo.getCell(1).setText(""+order.getCreateTime());  
+  
+        //表格第三行  
+        XWPFTableRow infoTableRowThree = infoTable.createRow();  
+        infoTableRowThree.getCell(0).setText("Total Amount");  
+        infoTableRowThree.getCell(1).setText("$ "+order.getPayment());  
+  
+  
+  
+        //两个表格之间加个换行  
+        XWPFParagraph paragraph = document.createParagraph();  
+        XWPFRun paragraphRun = paragraph.createRun();  
+        paragraphRun.setText("\r");  
+  
+  
+  
+        //工作经历表格  
+        XWPFTable ComTable = document.createTable();  
+  
+        //列宽自动分割  
+        CTTblWidth comTableWidth = ComTable.getCTTbl().addNewTblPr().addNewTblW();  
+        comTableWidth.setType(STTblWidth.DXA);  
+        comTableWidth.setW(BigInteger.valueOf(9072));  
+  
+        //表格第一行  
+        XWPFTableRow comTableRowOne = ComTable.getRow(0);  
+        comTableRowOne.getCell(0).setText("GoodsInfo");  
+        comTableRowOne.addNewTableCell().setText("itemType");  
+        comTableRowOne.addNewTableCell().setText("Num"); 
+        comTableRowOne.addNewTableCell().setText("Price"); 
+        comTableRowOne.addNewTableCell().setText("Price Total"); 
+  
+        Integer goodsNum = 0;
+        for(LuxOrderItem item : items){
+        	goodsNum += item.getNum();
+        	 //表格第二行  
+            XWPFTableRow comTableRowTwo = ComTable.createRow();  
+            comTableRowTwo.getCell(0).setText(""+item.getItemTitle()); 
+            String[] type = item.getItemType().split("<br/>");
+            comTableRowTwo.getCell(1).setText(type[0]+"\r"+type[1]);  
+            comTableRowTwo.getCell(2).setText(""+item.getNum());  
+            comTableRowTwo.getCell(3).setText(""+item.getPrice());  
+            comTableRowTwo.getCell(4).setText(""+item.getPriceTotal());  
+        }
+       
+        //表格第四行  
+        XWPFTableRow infoTableRowFour = infoTable.createRow();  
+        infoTableRowFour.getCell(0).setText("goodsNum");  
+        infoTableRowFour.getCell(1).setText(""+goodsNum); 
+        
+  
+  
+        
+        try {
+			res.reset();
+			res.setContentType("application/octet-stream;charset=utf-8");
+			res.setHeader("Content-Disposition", "attachment;filename="+order.getOrderId()+".docx");
+			out = res.getOutputStream();
+			
+			//data是工作表名
+//			util.exportExcel(list, "data", out);
+			document.write(out);
+			out.flush();
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(out!=null){
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+        
+        System.out.println("create_table document written success.");  
+		
+		return null;
 	}
 	
 	

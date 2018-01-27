@@ -19,6 +19,8 @@ public class LuxOrder {
     private Date updateTime;
 
     private Date endTime;
+    
+    private Integer productNum;
 
     private Long userId;
 
@@ -93,4 +95,16 @@ public class LuxOrder {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+	public Integer getProductNum() {
+		return productNum;
+	}
+
+	public void setProductNum(Integer productNum) {
+		this.productNum = productNum;
+	}
+    
+    
+    
+    
 }

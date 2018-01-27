@@ -39,12 +39,13 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 			File filePath = new File("/ftpuser/images"+imagePath);
 			if (!filePath.exists()) {
 				filePath.mkdirs();
-				filePath.setReadable(true);
-				
+//				filePath.setReadable(true, false);
+//				filePath.setExecutable(true,false);
+				Runtime.getRuntime().exec("chmod -R 755 /ftpuser/images");
 			}
 			
 			File file = new File("/ftpuser/images"+newName);
-			file.setReadable(true);
+			
 			
 			FileOutputStream fos = new FileOutputStream("/ftpuser/images"+newName);
 			
@@ -57,6 +58,12 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 			fos.flush();
 			fos.close();
 			is.close();
+			
+			file.setReadable(true,false);
+//			file.setExecutable(true);
+//			Runtime.getRuntime().exec("chmod -R 755 /ftpuser/images"+newName);
+			
+			System.out.println(file.canRead());
 			
 		} catch (IOException e) {
 			return LuxtonResult.build(561, "文件上传失败!"+ExceptionUtil.getStackTrace(e));
@@ -92,11 +99,13 @@ public class PictureUploadServiceImpl implements PictureUploadService {
 				if (!filePath.exists()) {
 					filePath.mkdirs();
 					filePath.setReadable(true);
-					
+					filePath.setExecutable(true);
 				}
 				
 				File file = new File("/ftpuser/images"+newName);
 				file.setReadable(true);
+				file.setExecutable(true);
+				Runtime.getRuntime().exec("chmod 777 /ftpuser/images"+newName);
 				
 				FileOutputStream fos = new FileOutputStream("/ftpuser/images"+newName);
 				
