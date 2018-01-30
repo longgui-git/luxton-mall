@@ -3,6 +3,7 @@ package com.luxton.mapper;
 import com.luxton.pojo.LuxOrder;
 import com.luxton.pojo.LuxOrderExample;
 import com.luxton.pojo.common.OrderWithItemList;
+import com.luxton.pojo.common.OrderWithUserInfo;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -30,6 +31,8 @@ public interface LuxOrderMapper {
 
     int updateByPrimaryKey(LuxOrder record);
     
+    
+    OrderWithUserInfo selectOrderWithUserInfo(String orderId);
     
     List<OrderWithItemList> getOrderList();
     

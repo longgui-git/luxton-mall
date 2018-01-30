@@ -1,7 +1,6 @@
 package com.luxton.service.impl;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -11,20 +10,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTShd;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STShd;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +28,7 @@ import com.luxton.pojo.LuxOrder;
 import com.luxton.pojo.LuxOrderItem;
 import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.pojo.common.OrderWithItemList;
+import com.luxton.pojo.common.OrderWithUserInfo;
 import com.luxton.service.OrderService;
 import com.luxton.utils.LuxtonResult;
 @Service
@@ -84,7 +76,9 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public LuxtonResult getOrderByOrderId(String orderId) {
 
-		LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
+//		LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
+		OrderWithUserInfo order = orderMapper.selectOrderWithUserInfo(orderId);
+		
 		if(order == null){
 			return LuxtonResult.ok();
 		}
@@ -93,6 +87,10 @@ public class OrderServiceImpl implements OrderService {
 		orderItem.setEndTime(order.getEndTime());
 		orderItem.setOrderId(orderId);
 		orderItem.setPayment(order.getPayment());
+		orderItem.setName(order.getName());
+		orderItem.setPhone(order.getPhone());
+		orderItem.setRemark(order.getRemark());
+		
 		
 		List<LuxOrderItem> items = oitemMapper.getByOrderId(order.getOrderId());
 		orderItem.setItems(items);
@@ -119,7 +117,8 @@ public class OrderServiceImpl implements OrderService {
 		  
         OutputStream out = null;
   
-        LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
+//        LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
+        OrderWithUserInfo order = orderMapper.selectOrderWithUserInfo(orderId);
 		if(order == null){
 			return LuxtonResult.ok();
 		}
@@ -152,9 +151,9 @@ public class OrderServiceImpl implements OrderService {
         //表格第三行  
         XWPFTableRow infoTableRowThree = infoTable.createRow();  
         infoTableRowThree.getCell(0).setText("Total Amount");  
-        infoTableRowThree.getCell(1).setText("$ "+order.getPayment());  
-  
-  
+        infoTableRowThree.getCell(1).setText("$ "+order.getPayment()); 
+        
+      
   
         //两个表格之间加个换行  
         XWPFParagraph paragraph = document.createParagraph();  
@@ -198,6 +197,21 @@ public class OrderServiceImpl implements OrderService {
         infoTableRowFour.getCell(1).setText(""+goodsNum); 
         
   
+      //表格第五行  
+        XWPFTableRow infoTableRowFive = infoTable.createRow();  
+        infoTableRowFive.getCell(0).setText("UserName");  
+        infoTableRowFive.getCell(1).setText(""+order.getName());  
+        
+      //表格第六行  
+        XWPFTableRow infoTableRowSix = infoTable.createRow();  
+        infoTableRowSix.getCell(0).setText("TelePhone");  
+        infoTableRowSix.getCell(1).setText(""+order.getPhone());  
+  
+      //表格第七行  
+        XWPFTableRow infoTableRowSeven = infoTable.createRow();  
+        infoTableRowSeven.getCell(0).setText("remark");  
+        infoTableRowSeven.getCell(1).setText(""+order.getRemark());  
+  
   
         
         try {
@@ -228,7 +242,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
         
-        System.out.println("create_table document written success.");  
+//        System.out.println("create_table document written success.");  
 		
 		return null;
 	}

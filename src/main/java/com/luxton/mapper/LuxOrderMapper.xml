@@ -93,9 +93,24 @@
   
   
   
+  <select id="selectOrderWithUserInfo" resultType="com.luxton.pojo.common.OrderWithUserInfo" parameterType="java.lang.String" >
+    SELECT lo.order_id orderId, lo.payment , lo.STATUS, lo.create_time createTime, lo.end_time endTime,
+		lu.name ,lu.phone ,lu.remark
+	FROM lux_order lo
+	LEFT JOIN lux_user lu
+	ON lo.user_id = lu.user_id
+	WHERE lo.order_id = #{orderId,jdbcType=VARCHAR}
+	
+  </select>
+  
+  
   <select id="getOrderList" resultType="com.luxton.pojo.common.OrderWithItemList" >
-    SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
-	FROM lux_order
+    SELECT lo.order_id orderId, lo.payment , lo.STATUS, lo.create_time createTime, lo.end_time endTime,
+		lu.name ,lu.phone ,lu.remark
+	FROM lux_order lo
+	LEFT JOIN lux_user lu
+	ON lo.user_id = lu.user_id
+	ORDER BY lo.create_time DESC
   </select>
   
   
@@ -107,9 +122,13 @@
   
   
   <select id="getOrderListByStatus" resultType="com.luxton.pojo.common.OrderWithItemList" >
-    SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
-	FROM lux_order
+    SELECT lo.order_id orderId, lo.payment , lo.STATUS, lo.create_time createTime, lo.end_time endTime,
+		lu.name ,lu.phone ,lu.remark
+	FROM lux_order lo
+	LEFT JOIN lux_user lu
+	ON lo.user_id = lu.user_id
 	where STATUS = #{status,jdbcType=INTEGER}
+	ORDER BY lo.create_time DESC
   </select>
   
   <select id="getOrderListByUserAndStatus" resultType="com.luxton.pojo.common.OrderWithItemList" >
