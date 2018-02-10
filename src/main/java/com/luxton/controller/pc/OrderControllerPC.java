@@ -42,7 +42,7 @@ public class OrderControllerPC {
 			@RequestParam(defaultValue="10") Integer stage ,HttpServletRequest req){
 		
 		String uid = (String) req.getSession().getAttribute("userId");
-		Long userId = 3L;
+		Long userId = null;
 		if(uid != null){
 			userId = Long.parseLong(uid);
 		}

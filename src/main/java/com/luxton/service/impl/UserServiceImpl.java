@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.luxton.mapper.LuxUserMapper;
 import com.luxton.pojo.LuxUser;
+import com.luxton.pojo.LuxUserExample;
 import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.service.UserService;
 import com.luxton.utils.LuxtonResult;
@@ -46,6 +47,14 @@ public class UserServiceImpl implements UserService {
 	public LuxtonResult insertUser(LuxUser user) {
 
 		if(user.getUserId() == null){
+			
+			LuxUserExample example = new LuxUserExample();
+			example.createCriteria().andUsernameEqualTo(user.getUsername());
+			List<LuxUser> list = userMapper.selectByExample(example);
+			if(list!=null && list.size()>0){
+				return LuxtonResult.build(556, "用户名已存在");
+			}
+			
 			user.setCreateTime(new Date());
 			userMapper.insertSelective(user);
 		}else{

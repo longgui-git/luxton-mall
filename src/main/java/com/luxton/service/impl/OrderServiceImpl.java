@@ -15,6 +15,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
+import org.joda.time.DateTime;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.luxton.mapper.LuxOrderItemMapper;
 import com.luxton.mapper.LuxOrderMapper;
-import com.luxton.pojo.LuxOrder;
 import com.luxton.pojo.LuxOrderItem;
 import com.luxton.pojo.common.DataWithPageResults;
 import com.luxton.pojo.common.OrderWithItemList;
@@ -110,7 +110,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public LuxtonResult exportOrder(String orderId,HttpServletResponse res) {
+	public void exportOrder(String orderId,HttpServletResponse res) {
 
 		
 		XWPFDocument document= new XWPFDocument();  
@@ -118,10 +118,10 @@ public class OrderServiceImpl implements OrderService {
         OutputStream out = null;
   
 //        LuxOrder order = orderMapper.selectByPrimaryKey(orderId);
-        OrderWithUserInfo order = orderMapper.selectOrderWithUserInfo(orderId);
-		if(order == null){
-			return LuxtonResult.ok();
-		}
+        OrderWithUserInfo order = orderMapper.exportOrderWithUserInfo(orderId);
+//		if(order == null){
+//			return ;
+//		}
 		
 		List<LuxOrderItem> items = oitemMapper.getByOrderId(order.getOrderId());
   
@@ -146,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
         //表格第二行  
         XWPFTableRow infoTableRowTwo = infoTable.createRow();  
         infoTableRowTwo.getCell(0).setText("Order Date");  
-        infoTableRowTwo.getCell(1).setText(""+order.getCreateTime());  
+        infoTableRowTwo.getCell(1).setText(""+order.getOrderDate());  
   
         //表格第三行  
         XWPFTableRow infoTableRowThree = infoTable.createRow();  
@@ -244,7 +244,7 @@ public class OrderServiceImpl implements OrderService {
         
 //        System.out.println("create_table document written success.");  
 		
-		return null;
+//		return null;
 	}
 	
 	

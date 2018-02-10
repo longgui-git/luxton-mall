@@ -45,4 +45,9 @@ public interface LuxOrderMapper {
     
     List<OrderWithItemList> getOrderListByUser(@Param("userId") Long userId);
     
+    
+    
+    
+    OrderWithUserInfo exportOrderWithUserInfo(String orderId);
+    
 }

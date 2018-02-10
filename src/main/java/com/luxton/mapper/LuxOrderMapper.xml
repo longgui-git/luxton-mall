@@ -135,13 +135,27 @@
     SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
 	FROM lux_order
 	where STATUS = #{status,jdbcType=INTEGER}  AND user_id = #{userId,jdbcType=BIGINT}
+	ORDER BY create_time DESC
   </select>
   
   <select id="getOrderListByUser" resultType="com.luxton.pojo.common.OrderWithItemList" >
     SELECT order_id orderId, payment , STATUS, create_time createTime, end_time endTime
 	FROM lux_order
 	where user_id = #{userId,jdbcType=BIGINT}
+	ORDER BY create_time DESC
   </select>
+  
+  
+  <select id="exportOrderWithUserInfo" resultType="com.luxton.pojo.common.OrderWithUserInfo" parameterType="java.lang.String" >
+    SELECT lo.order_id orderId, lo.payment , lo.STATUS, DATE_FORMAT(lo.create_time,'%Y-%c-%d %h:%i:%s') orderDate, lo.end_time endTime,
+		lu.name ,lu.phone ,lu.remark
+	FROM lux_order lo
+	LEFT JOIN lux_user lu
+	ON lo.user_id = lu.user_id
+	WHERE lo.order_id = #{orderId,jdbcType=VARCHAR}
+	
+  </select>
+  
   
   
   

@@ -108,7 +108,7 @@ public class ItemPcServiceImpl implements ItemPcService {
 		
 		
 		if(catId != null) {
-			example.createCriteria().andCatIdEqualTo(catId);
+			example.createCriteria().andCatIdEqualTo(catId).andStatusEqualTo(true);
 		}
 		
 		List<LuxItem> list = itemMapper.selectByExample(example);

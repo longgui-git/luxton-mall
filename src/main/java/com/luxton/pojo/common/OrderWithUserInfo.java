@@ -9,6 +9,8 @@ public class OrderWithUserInfo extends LuxOrder {
 	private String phone;
 
 	private String remark;
+	
+	private String orderDate;
 
 	public String getName() {
 		return name;
@@ -32,6 +34,14 @@ public class OrderWithUserInfo extends LuxOrder {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
 	}
 	
 	

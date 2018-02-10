@@ -98,8 +98,8 @@
   
   <update id="updateItemStatus"  >
     update lux_item
-    set status = #{status,jdbcType=BIT}
-      
+    set status = #{status,jdbcType=BIT},create_time = NOW()
+    
     where item_id in
     <foreach item="itemId" collection="list" open="(" separator="," close=")">
     	#{itemId}
@@ -116,7 +116,7 @@
 	LEFT JOIN lux_item item
 	ON item.item_id = ip.item_id
 	
-	WHERE property_value_id =  #{propertyValueId,jdbcType=INTEGER} AND lp.is_search IS TRUE
+	WHERE property_value_id =  #{propertyValueId,jdbcType=INTEGER} AND lp.is_search IS TRUE AND item.status IS TRUE 
 	
 	<if test="orderType != null and order != null" >
         ORDER BY item.${orderType} ${order}

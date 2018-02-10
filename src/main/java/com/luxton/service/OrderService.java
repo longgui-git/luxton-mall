@@ -13,6 +13,6 @@ public interface OrderService {
 	public LuxtonResult updateOrderStatus(String orderId,Integer status);
 	
 	
-	public LuxtonResult exportOrder(String orderId,HttpServletResponse res);
+	public void exportOrder(String orderId,HttpServletResponse res);
 	
 }

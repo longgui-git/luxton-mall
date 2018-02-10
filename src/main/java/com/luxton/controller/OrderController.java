@@ -49,10 +49,11 @@ public class OrderController {
 	
 	@RequestMapping("/exportOrder")
 	@ResponseBody
-	public LuxtonResult exportOrder(String orderId,HttpServletResponse res) {
+	public void exportOrder(String orderId,HttpServletResponse res) {
 		
-		LuxtonResult result = orderService.exportOrder(orderId,res);
-		return result;
+		orderService.exportOrder(orderId,res);
+//		LuxtonResult result = orderService.exportOrder(orderId,res);
+//		return null;
 	}
 	
 	

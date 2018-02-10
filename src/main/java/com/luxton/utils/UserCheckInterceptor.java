@@ -31,7 +31,7 @@ public class UserCheckInterceptor implements HandlerInterceptor {
 		
 		
 		if(StringUtils.isBlank(userId)){
-			res.sendRedirect("http://www.luxtonusa.com/user/relogin/432");
+			res.sendRedirect("http://ws.luxtonusa.com/user/relogin/432");
 		}
 		
 		return true;
